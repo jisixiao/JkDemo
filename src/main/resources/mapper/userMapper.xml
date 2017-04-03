@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.demo.mapper.userMapper">
+    <resultMap id="userRes" type="com.demo.po.user">
+
+        <id property="id" column="userId"></id>
+        <result property="username" column="userName"></result>
+        <result property="password" column="password"></result>
+        <result property="password" column="department"></result>
+        <result property="password" column="email"></result>
+        <result property="password" column="departmentId"></result>
+        <result property="password" column="position"></result>
+    </resultMap>
+    
+    <select id="getUser" resultMap="userRes" resultType="string">
+        SELECT  * from user where username = #{username}
+    </select>
+</mapper>
