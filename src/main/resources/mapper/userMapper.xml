@@ -8,10 +8,10 @@
         <id property="id" column="userId"></id>
         <result property="username" column="userName"></result>
         <result property="password" column="password"></result>
-        <result property="password" column="department"></result>
-        <result property="password" column="email"></result>
-        <result property="password" column="departmentId"></result>
-        <result property="password" column="position"></result>
+        <result property="department" column="department"></result>
+        <result property="email" column="email"></result>
+        <result property="departmentId" column="departmentId"></result>
+        <result property="position" column="position"></result>
     </resultMap>
     
     <select id="getUser" resultMap="userRes" resultType="string">

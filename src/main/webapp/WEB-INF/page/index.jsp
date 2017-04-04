@@ -9,67 +9,83 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <%--<meta name="description" content="">--%>
-    <%--<meta name="author" content="">--%>
-    <%--<link rel="icon" href="../../favicon.ico">--%>
 
-    <%--<title>Signin Template for Bootstrap</title>--%>
-
-    <%--<!-- Bootstrap core CSS -->--%>
-    <%--<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">--%>
-
-    <%--<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->--%>
-    <%--<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">--%>
-
-    <%--<!-- Custom styles for this template -->--%>
-    <%--<link href="signin.css" rel="stylesheet">--%>
-
-    <%--<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->--%>
-    <%--<!--[if lt IE 9]>--%>
-    <%--<script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->--%>
-    <%--<script src="../../assets/js/ie-emulation-modes-warning.js"></script>--%>
-
-    <%--<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->--%>
-    <%--<!--[if lt IE 9]>--%>
-    <%--<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>--%>
-    <%--<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>--%>
-    <%--<![endif]-->--%>
 
 </head>
 
 <body>
 <div class="container">
 
-    <form id="defaultForm" class="form-signin" action="${ctx}/getUser.action" method="post">
-        <h2 class="form-signin-heading">用户登入</h2>
-        <label for="username" class="sr-only">用户名</label>
-        <input type="text" id="username" name="username"  class="form-control" placeholder="请输入用户名" required autofocus>
-        <label for="password" class="sr-only">密码</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码" required>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> 记住密码
-            </label>
+    <%--<form id="defaultForm" class="form-signin" action="${ctx}/getUser.action" method="post">--%>
+    <%--<h2 class="form-signin-heading">用户登入</h2>--%>
+    <%--<label for="username" class="sr-only">用户名</label>--%>
+    <%--<input type="text" id="username" name="username"  class="form-control" placeholder="请输入用户名" required autofocus>--%>
+    <%--<label for="password" class="sr-only">密码</label>--%>
+    <%--<input type="password" id="password" name="password" class="form-control" placeholder="请输入密码" required>--%>
+    <%--<div class="checkbox">--%>
+    <%--<label>--%>
+    <%--<input type="checkbox" value="remember-me"> 记住密码--%>
+    <%--</label>--%>
+    <%--</div>--%>
+    <%--<button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">登入</button>--%>
+    <%--</form>--%>
+    <div class="container">
+        <div class="row">
+            <!-- form: -->
+            <section>
+                <div class="page-header">
+                    <h1>用户登入</h1>
+                </div>
+
+                <div class="col-lg-8 col-lg-offset-2">
+                    <form id="defaultForm" method="post" action="target.php" class="form-horizontal">
+                        <fieldset>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">用户名</label>
+                                <div class="col-lg-5">
+                                    <input type="text" class="form-control" name="username"/>
+                                </div>
+                            </div>
+
+
+                        </fieldset>
+
+
+                        <fieldset>
+
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Password</label>
+                                <div class="col-lg-5">
+                                    <input type="password" class="form-control" name="password"/>
+                                </div>
+                            </div>
+
+
+                        </fieldset>
+
+
+                        <div class="form-group">
+                            <div class="col-lg-9 col-lg-offset-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <!-- :form -->
         </div>
-        <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">登入</button>
-    </form>
+    </div>
 
 </div>
 
 
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 <script type="text/javascript">
 
     $(function () {
-        $("#submit").click(function() {
-            $('#defaultForm').bootstrapValidator('validate');
-
-               });
-        $('#defaultForm').bootstrapValidator({ //$("form") 根据标签
-
+        $('#defaultForm').bootstrapValidator({
             message: 'This value is not valid',
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
@@ -78,29 +94,45 @@
             },
             fields: {
                 username: {
-                    message: '用户名验证失败',
+                    message: 'The username is not valid',
                     validators: {
                         notEmpty: {
-                            message: '用户名不能为空'
+                            message: '用户名不可为空！！'
                         },
-                        stringLength: {
-                            min: 6,
-                            max: 18,
-                            message: '用户名长度必须在6到18位之间'
-                        },
-                        regexp: {
-                            regexp: /^[a-zA-Z0-9_]+$/,
-                            message: '用户名只能包含大写、小写、数字和下划线'
-                        }
+
+//                        stringLength: {
+//                            min: 6,
+//                            max: 30,
+//                            message: 'The username must be more than 6 and less than 30 characters long'
+//                        },
+//                        regexp: {
+//                            regexp: /^[a-zA-Z0-9_\.]+$/,
+//                            message: 'The username can only consist of alphabetical, number, dot and underscore'
+//                        }
                     }
                 },
+
                 password: {
                     validators: {
                         notEmpty: {
-                            message: '密码不能为空'
+                            message: '密码不可为空！！'
                         },
-//                        emailAddress: {
-//                            message: '邮箱地址格式有误'
+                        threshold :  4,
+                        remote: {//ajax验证。server result:{"valid",true or false} 向服务发送当前input name值，获得一个json数据。例表示正确：{"valid",true}
+                            url: ctx + '/checkPassWordValid.action',
+                            message: '密码错误！！',
+                            delay: 3000,//每输入一个字符，就发ajax请求，服务器压力还是太大，设置2秒发送一次ajax（默认输入一个字符，提交一次，服务器压力太大）
+                            type: 'post',
+                            data: function(validator) {
+                                return {
+                                    username: $('[name="username"]').val(),
+                                };
+                            }
+                        }
+
+//                        identical: {
+//                            field: 'confirmPassword',
+//                            message: 'The password and its confirm are not the same'
 //                        }
                     }
                 }

@@ -1,49 +1,49 @@
 package com.demo.po;
 
 public class Menu {
-    private String fModuleid;
+    private String fModuleid;//菜单id
 
-    private String fParentid;
+    private String fParentid;//父菜单id
 
-    private String fEncode;
+    private String fEncode;//菜单英文名称
 
-    private String fFullname;
+    private String fFullname;//菜单中文名称
 
-    private String fIcon;
+    private String fIcon;//图表
 
-    private String fUrladdress;
+    private String fUrladdress;//菜单路径
 
-    private String fTarget;
+    private String fTarget;//打开方式 iframe，new Table,_self
 
-    private Integer fIsmenu;
+    private Integer fIsmenu;//
 
-    private Integer fAllowexpand;
+    private Integer fAllowexpand;//是否允许编辑
 
-    private Integer fIspublic;
+    private Integer fIspublic;//是否公开
 
-    private String fAllowedit;
+    private String fAllowedit;//是否允许编辑
 
-    private String fAllowdelete;
+    private String fAllowdelete;//是否允许删除
 
-    private Integer fSortcode;
+    private Integer fSortcode;//排序
 
     private Integer fDeletemark;
 
-    private Integer fEnabledmark;
+    private Integer fEnabledmark;//删除标记
 
-    private String fDescription;
+    private String fDescription;//描述
 
-    private String fCreatedate;
+    private String fCreatedate;//创建时间
 
-    private String fCreateuserid;
+    private String fCreateuserid;//创建用户id
 
-    private String fCreateusername;
+    private String fCreateusername;//创建者name
 
-    private String fModifydate;
+    private String fModifydate;//"2015-11-17 11:22:46",最后修改时间
 
-    private String fModifyuserid;
+    private String fModifyuserid;//最后修改者id
 
-    private String fModifyusername;
+    private String fModifyusername;//最后修改者name
 
     public String getfModuleid() {
         return fModuleid;

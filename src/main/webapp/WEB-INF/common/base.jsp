@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="${ctx}/fonts/font-awesome.min.css">
 <link rel="stylesheet" href="${ctx}/css/index.css">
 <link rel="stylesheet" href="${ctx}/css/skins/_all-skins.css">
+<link rel="stylesheet" href="${ctx}/pluggable/bootstrap/validator/bootstrapValidator.min.css">
 
 
 
@@ -23,6 +24,7 @@
 <script src="${ctx}/js/index.js"></script>
 
 <script src="${ctx}/pluggable/bootstrap/js/bootstrap.min.js"></script>
+<script src="${ctx}/pluggable/bootstrap/validator/bootstrapValidator.min.js"></script>
 
 <script type="text/javascript">
     var contextRootPath = "${ctx}";
@@ -35,4 +37,6 @@
 
 <%--<script type="text/javascript" src="../../jQuery/jquery-1.4.2.js"></script>--%>
 
-
+<script type="text/javascript">
+    var  ctx = "${ctx}";
+</script>

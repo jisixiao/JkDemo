@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.mapper.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.po.Menu" >
+    <result column="F_ModuleId" property="fModuleid" jdbcType="VARCHAR" />
+    <result column="F_ParentId" property="fParentid" jdbcType="VARCHAR" />
+    <result column="F_EnCode" property="fEncode" jdbcType="VARCHAR" />
+    <result column="F_FullName" property="fFullname" jdbcType="VARCHAR" />
+    <result column="F_Icon" property="fIcon" jdbcType="VARCHAR" />
+    <result column="F_UrlAddress" property="fUrladdress" jdbcType="VARCHAR" />
+    <result column="F_Target" property="fTarget" jdbcType="VARCHAR" />
+    <result column="F_IsMenu" property="fIsmenu" jdbcType="INTEGER" />
+    <result column="F_AllowExpand" property="fAllowexpand" jdbcType="INTEGER" />
+    <result column="F_IsPublic" property="fIspublic" jdbcType="INTEGER" />
+    <result column="F_AllowEdit" property="fAllowedit" jdbcType="VARCHAR" />
+    <result column="F_AllowDelete" property="fAllowdelete" jdbcType="VARCHAR" />
+    <result column="F_SortCode" property="fSortcode" jdbcType="INTEGER" />
+    <result column="F_DeleteMark" property="fDeletemark" jdbcType="INTEGER" />
+    <result column="F_EnabledMark" property="fEnabledmark" jdbcType="INTEGER" />
+    <result column="F_Description" property="fDescription" jdbcType="VARCHAR" />
+    <result column="F_CreateDate" property="fCreatedate" jdbcType="VARCHAR" />
+    <result column="F_CreateUserId" property="fCreateuserid" jdbcType="VARCHAR" />
+    <result column="F_CreateUserName" property="fCreateusername" jdbcType="VARCHAR" />
+    <result column="F_ModifyDate" property="fModifydate" jdbcType="VARCHAR" />
+    <result column="F_ModifyUserId" property="fModifyuserid" jdbcType="VARCHAR" />
+    <result column="F_ModifyUserName" property="fModifyusername" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    F_ModuleId, F_ParentId, F_EnCode, F_FullName, F_Icon, F_UrlAddress, F_Target, F_IsMenu, 
+    F_AllowExpand, F_IsPublic, F_AllowEdit, F_AllowDelete, F_SortCode, F_DeleteMark, 
+    F_EnabledMark, F_Description, F_CreateDate, F_CreateUserId, F_CreateUserName, F_ModifyDate, 
+    F_ModifyUserId, F_ModifyUserName
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.demo.po.MenuExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from menu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.demo.po.MenuExample" >
+    delete from menu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.demo.po.Menu" >
+    insert into menu (F_ModuleId, F_ParentId, F_EnCode, 
+      F_FullName, F_Icon, F_UrlAddress, 
+      F_Target, F_IsMenu, F_AllowExpand, 
+      F_IsPublic, F_AllowEdit, F_AllowDelete, 
+      F_SortCode, F_DeleteMark, F_EnabledMark, 
+      F_Description, F_CreateDate, F_CreateUserId, 
+      F_CreateUserName, F_ModifyDate, F_ModifyUserId, 
+      F_ModifyUserName)
+    values (#{fModuleid,jdbcType=VARCHAR}, #{fParentid,jdbcType=VARCHAR}, #{fEncode,jdbcType=VARCHAR}, 
+      #{fFullname,jdbcType=VARCHAR}, #{fIcon,jdbcType=VARCHAR}, #{fUrladdress,jdbcType=VARCHAR}, 
+      #{fTarget,jdbcType=VARCHAR}, #{fIsmenu,jdbcType=INTEGER}, #{fAllowexpand,jdbcType=INTEGER}, 
+      #{fIspublic,jdbcType=INTEGER}, #{fAllowedit,jdbcType=VARCHAR}, #{fAllowdelete,jdbcType=VARCHAR}, 
+      #{fSortcode,jdbcType=INTEGER}, #{fDeletemark,jdbcType=INTEGER}, #{fEnabledmark,jdbcType=INTEGER}, 
+      #{fDescription,jdbcType=VARCHAR}, #{fCreatedate,jdbcType=VARCHAR}, #{fCreateuserid,jdbcType=VARCHAR}, 
+      #{fCreateusername,jdbcType=VARCHAR}, #{fModifydate,jdbcType=VARCHAR}, #{fModifyuserid,jdbcType=VARCHAR}, 
+      #{fModifyusername,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.po.Menu" >
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fModuleid != null" >
+        F_ModuleId,
+      </if>
+      <if test="fParentid != null" >
+        F_ParentId,
+      </if>
+      <if test="fEncode != null" >
+        F_EnCode,
+      </if>
+      <if test="fFullname != null" >
+        F_FullName,
+      </if>
+      <if test="fIcon != null" >
+        F_Icon,
+      </if>
+      <if test="fUrladdress != null" >
+        F_UrlAddress,
+      </if>
+      <if test="fTarget != null" >
+        F_Target,
+      </if>
+      <if test="fIsmenu != null" >
+        F_IsMenu,
+      </if>
+      <if test="fAllowexpand != null" >
+        F_AllowExpand,
+      </if>
+      <if test="fIspublic != null" >
+        F_IsPublic,
+      </if>
+      <if test="fAllowedit != null" >
+        F_AllowEdit,
+      </if>
+      <if test="fAllowdelete != null" >
+        F_AllowDelete,
+      </if>
+      <if test="fSortcode != null" >
+        F_SortCode,
+      </if>
+      <if test="fDeletemark != null" >
+        F_DeleteMark,
+      </if>
+      <if test="fEnabledmark != null" >
+        F_EnabledMark,
+      </if>
+      <if test="fDescription != null" >
+        F_Description,
+      </if>
+      <if test="fCreatedate != null" >
+        F_CreateDate,
+      </if>
+      <if test="fCreateuserid != null" >
+        F_CreateUserId,
+      </if>
+      <if test="fCreateusername != null" >
+        F_CreateUserName,
+      </if>
+      <if test="fModifydate != null" >
+        F_ModifyDate,
+      </if>
+      <if test="fModifyuserid != null" >
+        F_ModifyUserId,
+      </if>
+      <if test="fModifyusername != null" >
+        F_ModifyUserName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fModuleid != null" >
+        #{fModuleid,jdbcType=VARCHAR},
+      </if>
+      <if test="fParentid != null" >
+        #{fParentid,jdbcType=VARCHAR},
+      </if>
+      <if test="fEncode != null" >
+        #{fEncode,jdbcType=VARCHAR},
+      </if>
+      <if test="fFullname != null" >
+        #{fFullname,jdbcType=VARCHAR},
+      </if>
+      <if test="fIcon != null" >
+        #{fIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="fUrladdress != null" >
+        #{fUrladdress,jdbcType=VARCHAR},
+      </if>
+      <if test="fTarget != null" >
+        #{fTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="fIsmenu != null" >
+        #{fIsmenu,jdbcType=INTEGER},
+      </if>
+      <if test="fAllowexpand != null" >
+        #{fAllowexpand,jdbcType=INTEGER},
+      </if>
+      <if test="fIspublic != null" >
+        #{fIspublic,jdbcType=INTEGER},
+      </if>
+      <if test="fAllowedit != null" >
+        #{fAllowedit,jdbcType=VARCHAR},
+      </if>
+      <if test="fAllowdelete != null" >
+        #{fAllowdelete,jdbcType=VARCHAR},
+      </if>
+      <if test="fSortcode != null" >
+        #{fSortcode,jdbcType=INTEGER},
+      </if>
+      <if test="fDeletemark != null" >
+        #{fDeletemark,jdbcType=INTEGER},
+      </if>
+      <if test="fEnabledmark != null" >
+        #{fEnabledmark,jdbcType=INTEGER},
+      </if>
+      <if test="fDescription != null" >
+        #{fDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="fCreatedate != null" >
+        #{fCreatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="fCreateuserid != null" >
+        #{fCreateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="fCreateusername != null" >
+        #{fCreateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="fModifydate != null" >
+        #{fModifydate,jdbcType=VARCHAR},
+      </if>
+      <if test="fModifyuserid != null" >
+        #{fModifyuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="fModifyusername != null" >
+        #{fModifyusername,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.demo.po.MenuExample" resultType="java.lang.Integer" >
+    select count(*) from menu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update menu
+    <set >
+      <if test="record.fModuleid != null" >
+        F_ModuleId = #{record.fModuleid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fParentid != null" >
+        F_ParentId = #{record.fParentid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fEncode != null" >
+        F_EnCode = #{record.fEncode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fFullname != null" >
+        F_FullName = #{record.fFullname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fIcon != null" >
+        F_Icon = #{record.fIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fUrladdress != null" >
+        F_UrlAddress = #{record.fUrladdress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fTarget != null" >
+        F_Target = #{record.fTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fIsmenu != null" >
+        F_IsMenu = #{record.fIsmenu,jdbcType=INTEGER},
+      </if>
+      <if test="record.fAllowexpand != null" >
+        F_AllowExpand = #{record.fAllowexpand,jdbcType=INTEGER},
+      </if>
+      <if test="record.fIspublic != null" >
+        F_IsPublic = #{record.fIspublic,jdbcType=INTEGER},
+      </if>
+      <if test="record.fAllowedit != null" >
+        F_AllowEdit = #{record.fAllowedit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fAllowdelete != null" >
+        F_AllowDelete = #{record.fAllowdelete,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fSortcode != null" >
+        F_SortCode = #{record.fSortcode,jdbcType=INTEGER},
+      </if>
+      <if test="record.fDeletemark != null" >
+        F_DeleteMark = #{record.fDeletemark,jdbcType=INTEGER},
+      </if>
+      <if test="record.fEnabledmark != null" >
+        F_EnabledMark = #{record.fEnabledmark,jdbcType=INTEGER},
+      </if>
+      <if test="record.fDescription != null" >
+        F_Description = #{record.fDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fCreatedate != null" >
+        F_CreateDate = #{record.fCreatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fCreateuserid != null" >
+        F_CreateUserId = #{record.fCreateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fCreateusername != null" >
+        F_CreateUserName = #{record.fCreateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fModifydate != null" >
+        F_ModifyDate = #{record.fModifydate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fModifyuserid != null" >
+        F_ModifyUserId = #{record.fModifyuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fModifyusername != null" >
+        F_ModifyUserName = #{record.fModifyusername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update menu
+    set F_ModuleId = #{record.fModuleid,jdbcType=VARCHAR},
+      F_ParentId = #{record.fParentid,jdbcType=VARCHAR},
+      F_EnCode = #{record.fEncode,jdbcType=VARCHAR},
+      F_FullName = #{record.fFullname,jdbcType=VARCHAR},
+      F_Icon = #{record.fIcon,jdbcType=VARCHAR},
+      F_UrlAddress = #{record.fUrladdress,jdbcType=VARCHAR},
+      F_Target = #{record.fTarget,jdbcType=VARCHAR},
+      F_IsMenu = #{record.fIsmenu,jdbcType=INTEGER},
+      F_AllowExpand = #{record.fAllowexpand,jdbcType=INTEGER},
+      F_IsPublic = #{record.fIspublic,jdbcType=INTEGER},
+      F_AllowEdit = #{record.fAllowedit,jdbcType=VARCHAR},
+      F_AllowDelete = #{record.fAllowdelete,jdbcType=VARCHAR},
+      F_SortCode = #{record.fSortcode,jdbcType=INTEGER},
+      F_DeleteMark = #{record.fDeletemark,jdbcType=INTEGER},
+      F_EnabledMark = #{record.fEnabledmark,jdbcType=INTEGER},
+      F_Description = #{record.fDescription,jdbcType=VARCHAR},
+      F_CreateDate = #{record.fCreatedate,jdbcType=VARCHAR},
+      F_CreateUserId = #{record.fCreateuserid,jdbcType=VARCHAR},
+      F_CreateUserName = #{record.fCreateusername,jdbcType=VARCHAR},
+      F_ModifyDate = #{record.fModifydate,jdbcType=VARCHAR},
+      F_ModifyUserId = #{record.fModifyuserid,jdbcType=VARCHAR},
+      F_ModifyUserName = #{record.fModifyusername,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

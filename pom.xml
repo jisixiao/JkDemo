@@ -106,15 +106,11 @@
 
     <!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->
 
-    <dependency>
-
-      <groupId>commons-dbcp</groupId>
-
-      <artifactId>commons-dbcp</artifactId>
-
-      <version>1.4</version>
-
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>commons-dbcp</groupId>-->
+      <!--<artifactId>commons-dbcp</artifactId>-->
+      <!--<version>1.4</version>-->
+    <!--</dependency>-->
 
     <dependency>
       <groupId>javax.servlet.jsp.jstl</groupId>
@@ -190,7 +186,8 @@
     <!-- 如果不添加此节点mybatis的mapper.xml文件都会被漏掉。 -->
     <resources>
       <resource>
-        <directory>src/main/java</directory>
+        <!--拷贝资源文件-->
+        <directory>src/main/resources</directory>
         <includes>
           <include>**/*.properties</include>
           <include>**/*.xml</include>
