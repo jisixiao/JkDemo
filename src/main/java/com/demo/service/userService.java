@@ -1,7 +1,7 @@
 package com.demo.service;
 
 import com.demo.mapper.userMapper;
-import com.demo.po.user;
+import com.demo.po.User;
 import com.demo.service.impl.userServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class userService implements userServiceImpl{
     userMapper mapper;
 
 
-    public user getUser(String userName) {
+    public User getUser(String userName) {
         return mapper.getUser(userName);
     }
 }

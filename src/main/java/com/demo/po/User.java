@@ -4,7 +4,7 @@ package com.demo.po;
  * Coding......
  * Created by D.SR on 2017/2/20.
  */
-public class user {
+public class User {
 
     private int id;
 

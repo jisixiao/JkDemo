@@ -1,7 +1,6 @@
 package com.demo.mapper;
 
-import com.demo.po.user;
-import org.springframework.stereotype.Repository;
+import com.demo.po.User;
 
 /**
  * Coding......
@@ -10,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 public interface userMapper {
 
-    public user getUser(String usernName);
+    public User getUser(String usernName);
 }

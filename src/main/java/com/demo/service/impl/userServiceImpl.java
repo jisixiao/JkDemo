@@ -1,6 +1,6 @@
 package com.demo.service.impl;
 
-import com.demo.po.user;
+import com.demo.po.User;
 
 /**
  * Coding......
@@ -8,5 +8,5 @@ import com.demo.po.user;
  */
 public interface userServiceImpl {
 
-    public user getUser(String userName);
+    public User getUser(String userName);
 }

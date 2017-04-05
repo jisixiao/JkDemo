@@ -1,8 +1,8 @@
 package com.demo.utils;
 
 /**
- *
- * Created by D.SR on 2017/4/5.
+ * bootstrap  校验 结果返回Json
+ * Created by JSZ on 2017/4/5.
  */
 public class ValidResponse {
 
