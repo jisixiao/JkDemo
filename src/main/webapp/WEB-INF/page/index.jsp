@@ -56,7 +56,7 @@
 
                         <div class="form-group">
                             <div class="col-lg-9 col-lg-offset-3">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-primary" value="提交"></button>
                             </div>
                         </div>
                     </form>
@@ -73,6 +73,8 @@
 <script type="text/javascript">
 
     $(function () {
+
+        //from校验
         $('#defaultForm').bootstrapValidator({
             message: 'This value is not valid',
             feedbackIcons: {
@@ -97,6 +99,13 @@
 //                            regexp: /^[a-zA-Z0-9_\.]+$/,
 //                            message: 'The username can only consist of alphabetical, number, dot and underscore'
 //                        }
+                        //ajax验证。server result:{"valid",true or false} 向服务发送当前input name值，获得一个json数据。例表示正确：{"valid",true}
+                        remote: {
+                            url: ctx+'/checkNameValid.action',//验证地址
+                            message: '用户已存在',//提示消息
+                            delay :  2000,
+                            type: 'POST'//请求方式
+                        }
                     }
                 },
 
@@ -116,6 +125,7 @@
                                     username: $('[name="username"]').val(),
                                 };
                             }
+
                         }
 
 //                        identical: {
@@ -126,6 +136,13 @@
                 }
             }
         });
+
+
+
+
+
+
+
     });
 </script>
 </html>
