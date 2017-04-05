@@ -16,19 +16,7 @@
 <body>
 <div class="container">
 
-    <%--<form id="defaultForm" class="form-signin" action="${ctx}/getUser.action" method="post">--%>
-    <%--<h2 class="form-signin-heading">用户登入</h2>--%>
-    <%--<label for="username" class="sr-only">用户名</label>--%>
-    <%--<input type="text" id="username" name="username"  class="form-control" placeholder="请输入用户名" required autofocus>--%>
-    <%--<label for="password" class="sr-only">密码</label>--%>
-    <%--<input type="password" id="password" name="password" class="form-control" placeholder="请输入密码" required>--%>
-    <%--<div class="checkbox">--%>
-    <%--<label>--%>
-    <%--<input type="checkbox" value="remember-me"> 记住密码--%>
-    <%--</label>--%>
-    <%--</div>--%>
-    <%--<button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">登入</button>--%>
-    <%--</form>--%>
+
     <div class="container">
         <div class="row">
             <!-- form: -->
