@@ -1,12 +1,6 @@
 package com.demo.controller;
 
-import com.demo.controller.base.Base;
-import com.demo.controller.base.BaseController;
 import com.demo.po.Menu;
-import com.demo.service.MenuService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,9 +13,15 @@ import java.util.List;
  * Created by jisixiao on 2017/3/30.
  */
 @Controller
+@RequestMapping("/home")
 public class HomeController extends BaseController<HomeController> {
 
 
+    /**
+     * 跳转 主页面
+     * @param request
+     * @return
+     */
     @RequestMapping("/goHomeView.action")
     public String goHomeView(HttpServletRequest request) {
 
@@ -34,6 +34,19 @@ public class HomeController extends BaseController<HomeController> {
         }
     }
 
+    /**
+     * 跳转登入页面
+     * @return
+     */
+    @RequestMapping("/goLoginView.action")
+    public String goLoginView(){
+        return "index.jsp";
+    }
+
+    /**
+     * 获取Menu菜单
+     * @return
+     */
     @RequestMapping("/menu/getMenuList.action")
     @ResponseBody
     public List<Menu> getMenuList() {

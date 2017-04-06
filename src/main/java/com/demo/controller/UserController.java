@@ -1,17 +1,10 @@
 package com.demo.controller;
 
-import com.demo.controller.base.Base;
-import com.demo.controller.base.BaseController;
 import com.demo.po.User;
-import com.demo.service.userService;
 import com.demo.utils.ResponseContent;
 import com.demo.utils.ValidResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/user")
 public class UserController extends BaseController<UserController> {
-
 
 
     @RequestMapping("/getUser.action")
@@ -99,8 +91,8 @@ public class UserController extends BaseController<UserController> {
 
     @RequestMapping("/login.action")
     @ResponseBody
-    public ResponseContent jsonText(String username, String password,
-                                    HttpServletRequest request) {
+    public ResponseContent login(String username, String password,
+                                 HttpServletRequest request) {
         ResponseContent responseContent = new ResponseContent();
         logInfo(this.getClass().getName() + "   ==> username is :" + username);
         logInfo(this.getClass().getName() + "   ==> password is :" + password);
@@ -113,7 +105,7 @@ public class UserController extends BaseController<UserController> {
 
                 responseContent.setMsg(ResponseContent.MSG_SUCCEED);
 
-                responseContent.setUrl("goHomeView.action");
+                responseContent.setUrl("home/goHomeView.action");
 
                 request.getSession().setAttribute("userName", username);
 
@@ -121,6 +113,28 @@ public class UserController extends BaseController<UserController> {
         } else {
             responseContent.setCode(ResponseContent.CODE_ERROR_NOUSER);
         }
+
+        return responseContent;
+    }
+
+    /**
+     * 退出登入
+     *
+     * @return
+     */
+    @RequestMapping("/logout.action")
+    public ResponseContent logOut(HttpServletRequest request) {
+        logInfo(this.getClass().getName() + "   ==> logout ");
+
+
+        ResponseContent responseContent = new ResponseContent();
+        responseContent.setCode(ResponseContent.CODE_SUCCEED);
+
+        responseContent.setMsg(ResponseContent.MSG_SUCCEED);
+
+        responseContent.setUrl("home/goLoginView.action");
+
+        request.getSession().setAttribute("userName", null);
 
         return responseContent;
     }

@@ -2,7 +2,7 @@
 
 <script  src="/jQuery/jquery-1.4.2.js"></script>
 <script type="text/javascript">
-    window.location.href = "goHomeView.action";		//javascript页面跳转
+    window.location.href = "home/goHomeView.action";		//javascript页面跳转
 </script>
 <body>
 </body>

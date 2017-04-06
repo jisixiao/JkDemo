@@ -1,4 +1,5 @@
-<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -51,12 +52,27 @@
                             <span class="hidden-xs">administrator</span>
                         </a>
                         <ul class="dropdown-menu pull-right">
-                            <li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info"><i
-                                    class="fa fa-user"></i>个人信息</a></li>
-                            <li><a href="javascript:void();"><i class="fa fa-trash-o"></i>清空缓存</a></li>
+                            <li>
+                                <a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info">
+                                    <i class="fa fa-user"></i>
+                                    个人信息
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void();">
+                                    <i class="fa fa-trash-o"></i>
+                                    清空缓存
+                                </a>
+                            </li>
                             <li><a href="javascript:void();"><i class="fa fa-paint-brush"></i>皮肤设置</a></li>
                             <li class="divider"></li>
-                            <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
+                            <li>
+                                <a id="logOut">
+                                    <i class="ace-icon fa fa-power-off"></i>
+                                    安全退出
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -96,7 +112,8 @@
             </button>
             <nav class="page-tabs menuTabs">
                 <div class="page-tabs-content" style="margin-left: 0px;">
-                    <a href="javascript:void (0);"onclick="location.reload()" class="menuTab active" data-id="/Home/Default">欢迎首页</a>
+                    <a href="javascript:void ();"  class="menuTab active"
+                       data-id="/Home/Default">欢迎首页</a>
                     <a href="javascript:;" class="menuTab" data-id="/Home/About" style="padding-right: 15px;">平台介绍</a>
                     <a href="javascript:;" class="menuTab" data-id="/SystemManage/Organize/Index">机构管理 <i
                             class="fa fa-remove"></i></a>
@@ -128,7 +145,8 @@
         <%--中间位置的页面显示--%>
         <div class="content-iframe" style="overflow: hidden;">
             <div class="mainContent" id="content-main" style="margin: 10px; margin-bottom: 0px; padding: 0;">
-                <iframe class="LRADMS_iframe" width="100%" height="100%" src="${ctx}/godefaultView.action" frameborder="0"
+                <iframe id="Iframe" class="LRADMS_iframe" width="100%" height="100%" src=""
+                        frameborder="0"
                         data-id="default.html"></iframe>
             </div>
         </div>
@@ -137,8 +155,24 @@
 
 </body>
 <script type="text/javascript">
-    $(function(){
-//        $.learunindex.loadMenu()
+    $(function () {
+        $("#Iframe").attr("src","${ctx}/home/godefaultView.action");
+
+    });
+    $("#logOut").click(function () {
+
+        $.ajax({
+            url: ctx + "/user/logout.action",
+            type: "post",
+            contentType: "application/x-www-form-urlencoded",
+            dataType: "json",
+            success: function (data) {
+                window.location.href = ctx + "/" + data.url;
+            },
+            error: function () {
+
+            }
+        });
     });
 </script>
 </html>
