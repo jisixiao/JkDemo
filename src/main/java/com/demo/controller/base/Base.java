@@ -13,6 +13,8 @@ import java.lang.reflect.Type;
 public class Base<T> {
     private Logger logger = null;
 
+    private  Class<T> entityClass = null;
+
     public Base() {
         Type genType = getClass().getGenericSuperclass();
         Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
@@ -25,7 +27,7 @@ public class Base<T> {
      * @param s 日志信息
      */
     public void logInfo(String s) {
-    logger.info(s);
+    logger.info( s);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.demo.controller;
 
 import com.demo.po.Menu;
+import com.demo.utils.ResponseContent;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -10,7 +11,7 @@ import java.util.List;
 
 /**
  * 页面跳转基础页
- * Created by jisixiao on 2017/3/30.
+ * Created by ju_SZ on 2017/3/30.
  */
 @Controller
 @RequestMapping("/home")
@@ -19,6 +20,7 @@ public class HomeController extends BaseController<HomeController> {
 
     /**
      * 跳转 主页面
+     *
      * @param request
      * @return
      */
@@ -36,15 +38,17 @@ public class HomeController extends BaseController<HomeController> {
 
     /**
      * 跳转登入页面
+     *
      * @return
      */
     @RequestMapping("/goLoginView.action")
-    public String goLoginView(){
+    public String goLoginView() {
         return "index.jsp";
     }
 
     /**
      * 获取Menu菜单
+     *
      * @return
      */
     @RequestMapping("/menu/getMenuList.action")
@@ -54,11 +58,27 @@ public class HomeController extends BaseController<HomeController> {
         return menuList;
     }
 
+    /**
+     * 跳转主页面
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping("/godefaultView.action")
     public String godefaultView(HttpServletRequest request) {
 
         return "default.jsp";
     }
 
+    /**
+     * 跳转 个人信息页面
+     *
+     * @return
+     */
+    @RequestMapping("/goUserInfoView.action")
+    public String goUserInfoView() {
+        logInfo(this.getClass().getName() + "====>  " + "goUserInfoView");
+        return "UserInfo.jsp";
+    }
 
 }

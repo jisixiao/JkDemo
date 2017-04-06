@@ -326,7 +326,12 @@
                                 _html += '<ul class="treeview-menu">';
                                 $.each(subchildNodes, function (i) {
                                     var subchildNodesrow = subchildNodes[i];
-                                    _html += '<li><a class="menuItem" data-id="' + subrow.fModuleid + '" href="' + subrow.fUrladdress + '"><i class="' + subchildNodesrow.fIcon + '"></i>' + subchildNodesrow.fFullname + '</a></li>';
+                                    _html += '<li>' +
+                                        '<a class="menuItem" data-id="' + subrow.fModuleid + '" href="' + subrow.fUrladdress + '">' +
+                                        '<i class="' + subchildNodesrow.fIcon + '"></i>' +
+                                        '' + subchildNodesrow.fFullname + '' +
+                                        '</a>' +
+                                        '</li>';
                                 });
                                 _html += '</ul>';
 
@@ -340,6 +345,8 @@
                     _html += '</li>'
                 }
             });
+
+
             $("#sidebar-menu").append(_html);
             $("#sidebar-menu li a").click(function () {
                 var d = $(this), e = d.next();
@@ -371,6 +378,8 @@
                 e.is(".treeview-menu");
             });
         }
+
+
     };
     $(function () {
         $.learunindex.load();

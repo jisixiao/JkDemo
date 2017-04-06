@@ -53,7 +53,7 @@
                         </a>
                         <ul class="dropdown-menu pull-right">
                             <li>
-                                <a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info">
+                                <a class="menuItem" data-id="userInfo" id="userInfo"    >
                                     <i class="fa fa-user"></i>
                                     个人信息
                                 </a>
@@ -112,7 +112,7 @@
             </button>
             <nav class="page-tabs menuTabs">
                 <div class="page-tabs-content" style="margin-left: 0px;">
-                    <a href="javascript:void ();"  class="menuTab active"
+                    <a href="javascript:void ();" class="menuTab active" id="Welhome"
                        data-id="/Home/Default">欢迎首页</a>
                     <a href="javascript:;" class="menuTab" data-id="/Home/About" style="padding-right: 15px;">平台介绍</a>
                     <a href="javascript:;" class="menuTab" data-id="/SystemManage/Organize/Index">机构管理 <i
@@ -156,11 +156,17 @@
 </body>
 <script type="text/javascript">
     $(function () {
-        $("#Iframe").attr("src","${ctx}/home/godefaultView.action");
+        $("#Iframe").attr("src", "${ctx}/home/godefaultView.action");
 
     });
-    $("#logOut").click(function () {
 
+    $("#Welhome").click(function () {
+        $("#Iframe").attr("src", "${ctx}/home/godefaultView.action");
+    });
+    $("#userInfo").click(function () {
+        $("#Iframe").attr("src", "${ctx}/home/goUserInfoView.action");
+    });
+    $("#logOut").click(function () {
         $.ajax({
             url: ctx + "/user/logout.action",
             type: "post",
@@ -173,6 +179,21 @@
 
             }
         });
+
     });
+    function pageHref(url,type) {
+        $.ajax({
+            url: ctx + url,
+            type: type,
+            contentType: "application/x-www-form-urlencoded",
+            dataType: "json",
+            success: function (data) {
+                window.location.href = ctx + "/" + data.url;
+            },
+            error: function () {
+
+            }
+        });
+    }
 </script>
 </html>

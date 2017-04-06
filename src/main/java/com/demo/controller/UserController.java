@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by D.SR on 2017/2/20.
+ * 用户操作
+ * Created by ju_SZ on 2017/2/20.
  */
 @Controller
 @RequestMapping("/user")
