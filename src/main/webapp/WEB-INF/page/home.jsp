@@ -53,7 +53,7 @@
                         </a>
                         <ul class="dropdown-menu pull-right">
                             <li>
-                                <a class="menuItem" data-id="userInfo" id="userInfo"    >
+                                <a class="menuItem" data-id="userInfo" id="userInfo"  href="/home/goUserInfoView.action"  >
                                     <i class="fa fa-user"></i>
                                     个人信息
                                 </a>
@@ -68,7 +68,7 @@
                             <li><a href="javascript:void();"><i class="fa fa-paint-brush"></i>皮肤设置</a></li>
                             <li class="divider"></li>
                             <li>
-                                <a id="logOut">
+                                <a  id="logout" >
                                     <i class="ace-icon fa fa-power-off"></i>
                                     安全退出
                                 </a>
@@ -114,15 +114,15 @@
                 <div class="page-tabs-content" style="margin-left: 0px;">
                     <a href="javascript:void ();" class="menuTab active" id="Welhome"
                        data-id="/Home/Default">欢迎首页</a>
-                    <a href="javascript:;" class="menuTab" data-id="/Home/About" style="padding-right: 15px;">平台介绍</a>
-                    <a href="javascript:;" class="menuTab" data-id="/SystemManage/Organize/Index">机构管理 <i
-                            class="fa fa-remove"></i></a>
-                    <a href="javascript:;" class="menuTab" data-id="/SystemManage/Role/Index">角色管理 <i
-                            class="fa fa-remove"></i></a>
-                    <a href="javascript:;" class="menuTab" data-id="/SystemManage/Duty/Index">岗位管理 <i
-                            class="fa fa-remove"></i></a>
-                    <a href="javascript:;" class="menuTab" data-id="/SystemManage/User/Index">用户管理 <i
-                            class="fa fa-remove"></i></a>
+                    <%--<a href="javascript:;" class="menuTab" data-id="/Home/About" style="padding-right: 15px;">平台介绍</a>--%>
+                    <%--<a href="javascript:;" class="menuTab" data-id="/SystemManage/Organize/Index">机构管理 <i--%>
+                            <%--class="fa fa-remove"></i></a>--%>
+                    <%--<a href="javascript:;" class="menuTab" data-id="/SystemManage/Role/Index">角色管理 <i--%>
+                            <%--class="fa fa-remove"></i></a>--%>
+                    <%--<a href="javascript:;" class="menuTab" data-id="/SystemManage/Duty/Index">岗位管理 <i--%>
+                            <%--class="fa fa-remove"></i></a>--%>
+                    <%--<a href="javascript:;" class="menuTab" data-id="/SystemManage/User/Index">用户管理 <i--%>
+                            <%--class="fa fa-remove"></i></a>--%>
                 </div>
             </nav>
             <button class="roll-nav roll-right tabRight">
@@ -147,7 +147,7 @@
             <div class="mainContent" id="content-main" style="margin: 10px; margin-bottom: 0px; padding: 0;">
                 <iframe id="Iframe" class="LRADMS_iframe" width="100%" height="100%" src=""
                         frameborder="0"
-                        data-id="default.html"></iframe>
+                        data-id="/Home/Default"></iframe>
             </div>
         </div>
     </div>
@@ -157,43 +157,25 @@
 <script type="text/javascript">
     $(function () {
         $("#Iframe").attr("src", "${ctx}/home/godefaultView.action");
-
     });
 
-    $("#Welhome").click(function () {
-        $("#Iframe").attr("src", "${ctx}/home/godefaultView.action");
-    });
-    $("#userInfo").click(function () {
-        $("#Iframe").attr("src", "${ctx}/home/goUserInfoView.action");
-    });
-    $("#logOut").click(function () {
+
+    $("#logout").click(function () {
         $.ajax({
             url: ctx + "/user/logout.action",
-            type: "post",
+            type: "get",
             contentType: "application/x-www-form-urlencoded",
             dataType: "json",
             success: function (data) {
+
                 window.location.href = ctx + "/" + data.url;
             },
             error: function () {
-
+            alert("网络错误");
             }
         });
 
     });
-    function pageHref(url,type) {
-        $.ajax({
-            url: ctx + url,
-            type: type,
-            contentType: "application/x-www-form-urlencoded",
-            dataType: "json",
-            success: function (data) {
-                window.location.href = ctx + "/" + data.url;
-            },
-            error: function () {
 
-            }
-        });
-    }
 </script>
 </html>

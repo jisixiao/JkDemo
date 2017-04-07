@@ -124,8 +124,7 @@ public class UserController extends BaseController<UserController> {
      * @return
      */
     @RequestMapping("/logout.action")
-    public ResponseContent logOut(HttpServletRequest request) {
-        logInfo(this.getClass().getName() + "   ==> logout ");
+    public ResponseContent logout(HttpServletRequest request) {
 
 
         ResponseContent responseContent = new ResponseContent();
@@ -133,7 +132,7 @@ public class UserController extends BaseController<UserController> {
 
         responseContent.setMsg(ResponseContent.MSG_SUCCEED);
 
-        responseContent.setUrl("home/goLoginView.action");
+        responseContent.setUrl("home/goHomeView.action");
 
         request.getSession().setAttribute("userName", null);
 

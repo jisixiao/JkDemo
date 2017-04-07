@@ -110,10 +110,13 @@
         addTab: function () {
             $(".navbar-custom-menu>ul>li.open").removeClass("open");
             var dataId = $(this).attr('data-id');
+
+
             if (dataId != "") {
                 //top.$.cookie('nfine_currentmoduleid', dataId, { path: "/" });
             }
             var dataUrl = $(this).attr('href');
+
             var menuName = $.trim($(this).text());
             var flag = true;
             if (dataUrl == undefined || $.trim(dataUrl).length == 0) {
@@ -135,10 +138,16 @@
                     return false;
                 }
             });
+
+
             if (flag) {
+                //Tab
+
                 var str = '<a href="javascript:;" class="active menuTab" data-id="' + dataUrl + '">' + menuName + ' <i class="fa fa-remove"></i></a>';
                 $('.menuTab').removeClass('active');
-                var str1 = '<iframe class="LRADMS_iframe" id="iframe' + dataId + '" name="iframe' + dataId + '"  width="100%" height="100%" src="' + dataUrl + '" frameborder="0" data-id="' + dataUrl + '" seamless></iframe>';
+
+                var str1 =
+                    '<iframe class="LRADMS_iframe" id="iframe' + dataId + '" name="iframe' + dataId + '"  width="100%" height="100%" src="' + dataUrl + '" frameborder="0" data-id="' + dataUrl + '" seamless></iframe>';
                 $('.mainContent').find('iframe.LRADMS_iframe').hide();
                 $('.mainContent').append(str1);
                 //$.loading(true);
@@ -150,6 +159,7 @@
             }
             return false;
         },
+
         scrollTabRight: function () {
             var marginLeftVal = Math.abs(parseInt($('.page-tabs-content').css('margin-left')));
             var tabOuterWidth = $.learuntab.calSumWidth($(".content-tabs").children().not(".menuTabs"));
@@ -177,6 +187,8 @@
                 }
             }
         },
+
+
         scrollTabLeft: function () {
             var marginLeftVal = Math.abs(parseInt($('.page-tabs-content').css('margin-left')));
             var tabOuterWidth = $.learuntab.calSumWidth($(".content-tabs").children().not(".menuTabs"));
@@ -204,6 +216,8 @@
                 marginLeft: 0 - scrollVal + 'px'
             }, "fast");
         },
+
+
         scrollToTab: function (element) {
             var marginLeftVal = $.learuntab.calSumWidth($(element).prevAll()), marginRightVal = $.learuntab.calSumWidth($(element).nextAll());
             var tabOuterWidth = $.learuntab.calSumWidth($(".content-tabs").children().not(".menuTabs"));
@@ -315,19 +329,23 @@
                     _html += '</a>'
                     var childNodes = $.learunindex.jsonWhere(data, function (v) { return v.fParentid == row.fModuleid });
                     if (childNodes.length > 0) {
+
                         _html += '<ul class="treeview-menu">';
                         $.each(childNodes, function (i) {
+
                             var subrow = childNodes[i];
+
                             var subchildNodes = $.learunindex.jsonWhere(data, function (v) { return v.fParentid == subrow.fModuleid });
                             _html += '<li>';
                             if (subchildNodes.length > 0) {
+
                                 _html += '<a href="#"><i class="' + subrow.fIcon + '"></i>' + subrow.fFullname + '';
                                 _html += '<i class="fa fa-angle-left pull-right"></i></a>';
                                 _html += '<ul class="treeview-menu">';
                                 $.each(subchildNodes, function (i) {
                                     var subchildNodesrow = subchildNodes[i];
                                     _html += '<li>' +
-                                        '<a class="menuItem" data-id="' + subrow.fModuleid + '" href="' + subrow.fUrladdress + '">' +
+                                        '<a class="menuItem" data-id="' + subrow.fModuleid + '" href="'+ ctx+ subrow.fUrladdress + '">' +
                                         '<i class="' + subchildNodesrow.fIcon + '"></i>' +
                                         '' + subchildNodesrow.fFullname + '' +
                                         '</a>' +
@@ -336,7 +354,7 @@
                                 _html += '</ul>';
 
                             } else {
-                                _html += '<a class="menuItem" data-id="' + subrow.fModuleid + '" href="' + subrow.fUrladdress + '"><i class="' + subrow.fIcon + '"></i>' + subrow.fFullname + '</a>';
+                                _html += '<a class="menuItem" data-id="' + subrow.fModuleid + '" href="'+ctx + subrow.fUrladdress + '"><i class="' + subrow.fIcon + '"></i>' + subrow.fFullname + '</a>';
                             }
                             _html += '</li>';
                         });
