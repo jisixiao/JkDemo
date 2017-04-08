@@ -124,8 +124,8 @@ public class UserController extends BaseController<UserController> {
      * @return
      */
     @RequestMapping("/logout.action")
+    @ResponseBody
     public ResponseContent logout(HttpServletRequest request) {
-
 
         ResponseContent responseContent = new ResponseContent();
         responseContent.setCode(ResponseContent.CODE_SUCCEED);

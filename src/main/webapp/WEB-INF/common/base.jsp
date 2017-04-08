@@ -27,16 +27,5 @@
 <script src="${ctx}/pluggable/bootstrap/validator/bootstrapValidator.min.js"></script>
 
 <script type="text/javascript">
-    var contextRootPath = "${ctx}";
-</script>
-
-
-<%--<script--%>
-        <%--src="${ctx }/jQuery/jquery.js" type="text/javascript">--%>
-<%--</script>--%>
-
-<%--<script type="text/javascript" src="../../jQuery/jquery-1.4.2.js"></script>--%>
-
-<script type="text/javascript">
     var  ctx = "${ctx}";
 </script>

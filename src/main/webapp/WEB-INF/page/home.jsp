@@ -161,6 +161,7 @@
 
 
     $("#logout").click(function () {
+
         $.ajax({
             url: ctx + "/user/logout.action",
             type: "get",
