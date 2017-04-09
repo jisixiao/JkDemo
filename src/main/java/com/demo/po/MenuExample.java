@@ -1583,6 +1583,66 @@ public class MenuExample {
             addCriterion("F_ModifyUserName not between", value1, value2, "fModifyusername");
             return (Criteria) this;
         }
+
+        public Criteria andOpenIsNull() {
+            addCriterion("open is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIsNotNull() {
+            addCriterion("open is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenEqualTo(Byte value) {
+            addCriterion("open =", value, "open");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenNotEqualTo(Byte value) {
+            addCriterion("open <>", value, "open");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenGreaterThan(Byte value) {
+            addCriterion("open >", value, "open");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenGreaterThanOrEqualTo(Byte value) {
+            addCriterion("open >=", value, "open");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenLessThan(Byte value) {
+            addCriterion("open <", value, "open");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenLessThanOrEqualTo(Byte value) {
+            addCriterion("open <=", value, "open");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIn(List<Byte> values) {
+            addCriterion("open in", values, "open");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenNotIn(List<Byte> values) {
+            addCriterion("open not in", values, "open");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenBetween(Byte value1, Byte value2) {
+            addCriterion("open between", value1, value2, "open");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenNotBetween(Byte value1, Byte value2) {
+            addCriterion("open not between", value1, value2, "open");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

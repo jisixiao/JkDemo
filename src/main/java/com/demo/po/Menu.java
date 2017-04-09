@@ -1,49 +1,51 @@
 package com.demo.po;
 
 public class Menu {
-    private String fModuleid;//菜单id
+    private String fModuleid;
 
-    private String fParentid;//父菜单id
+    private String fParentid;
 
-    private String fEncode;//菜单英文名称
+    private String fEncode;
 
-    private String fFullname;//菜单中文名称
+    private String fFullname;
 
-    private String fIcon;//图表
+    private String fIcon;
 
-    private String fUrladdress;//菜单路径
+    private String fUrladdress;
 
-    private String fTarget;//打开方式 iframe，new Table,_self
+    private String fTarget;
 
-    private Integer fIsmenu;//
+    private Integer fIsmenu;
 
-    private Integer fAllowexpand;//是否允许编辑
+    private Integer fAllowexpand;
 
-    private Integer fIspublic;//是否公开
+    private Integer fIspublic;
 
-    private String fAllowedit;//是否允许编辑
+    private String fAllowedit;
 
-    private String fAllowdelete;//是否允许删除
+    private String fAllowdelete;
 
-    private Integer fSortcode;//排序
+    private Integer fSortcode;
 
     private Integer fDeletemark;
 
-    private Integer fEnabledmark;//删除标记
+    private Integer fEnabledmark;
 
-    private String fDescription;//描述
+    private String fDescription;
 
-    private String fCreatedate;//创建时间
+    private String fCreatedate;
 
-    private String fCreateuserid;//创建用户id
+    private String fCreateuserid;
 
-    private String fCreateusername;//创建者name
+    private String fCreateusername;
 
-    private String fModifydate;//"2015-11-17 11:22:46",最后修改时间
+    private String fModifydate;
 
-    private String fModifyuserid;//最后修改者id
+    private String fModifyuserid;
 
-    private String fModifyusername;//最后修改者name
+    private String fModifyusername;
+
+    private boolean open;
 
     public String getfModuleid() {
         return fModuleid;
@@ -219,5 +221,13 @@ public class Menu {
 
     public void setfModifyusername(String fModifyusername) {
         this.fModifyusername = fModifyusername == null ? null : fModifyusername.trim();
+    }
+
+    public boolean getOpen() {
+        return open;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
     }
 }

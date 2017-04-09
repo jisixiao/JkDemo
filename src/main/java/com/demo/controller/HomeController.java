@@ -81,4 +81,14 @@ public class HomeController extends BaseController<HomeController> {
         return "UserInfo.jsp";
     }
 
+    /**
+     * 跳转到菜单树页面
+     * @return
+     */
+    @RequestMapping("/goTreeView.action")
+    public String goTreeView(){
+
+        return "TreeView.jsp";
+    }
+
 }

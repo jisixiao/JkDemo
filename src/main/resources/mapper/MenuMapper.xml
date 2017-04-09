@@ -24,6 +24,7 @@
     <result column="F_ModifyDate" property="fModifydate" jdbcType="VARCHAR" />
     <result column="F_ModifyUserId" property="fModifyuserid" jdbcType="VARCHAR" />
     <result column="F_ModifyUserName" property="fModifyusername" jdbcType="VARCHAR" />
+    <result column="open" property="open" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -87,7 +88,7 @@
     F_ModuleId, F_ParentId, F_EnCode, F_FullName, F_Icon, F_UrlAddress, F_Target, F_IsMenu, 
     F_AllowExpand, F_IsPublic, F_AllowEdit, F_AllowDelete, F_SortCode, F_DeleteMark, 
     F_EnabledMark, F_Description, F_CreateDate, F_CreateUserId, F_CreateUserName, F_ModifyDate, 
-    F_ModifyUserId, F_ModifyUserName
+    F_ModifyUserId, F_ModifyUserName, open
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.demo.po.MenuExample" >
     select
@@ -117,7 +118,7 @@
       F_SortCode, F_DeleteMark, F_EnabledMark, 
       F_Description, F_CreateDate, F_CreateUserId, 
       F_CreateUserName, F_ModifyDate, F_ModifyUserId, 
-      F_ModifyUserName)
+      F_ModifyUserName, open)
     values (#{fModuleid,jdbcType=VARCHAR}, #{fParentid,jdbcType=VARCHAR}, #{fEncode,jdbcType=VARCHAR}, 
       #{fFullname,jdbcType=VARCHAR}, #{fIcon,jdbcType=VARCHAR}, #{fUrladdress,jdbcType=VARCHAR}, 
       #{fTarget,jdbcType=VARCHAR}, #{fIsmenu,jdbcType=INTEGER}, #{fAllowexpand,jdbcType=INTEGER}, 
@@ -125,7 +126,7 @@
       #{fSortcode,jdbcType=INTEGER}, #{fDeletemark,jdbcType=INTEGER}, #{fEnabledmark,jdbcType=INTEGER}, 
       #{fDescription,jdbcType=VARCHAR}, #{fCreatedate,jdbcType=VARCHAR}, #{fCreateuserid,jdbcType=VARCHAR}, 
       #{fCreateusername,jdbcType=VARCHAR}, #{fModifydate,jdbcType=VARCHAR}, #{fModifyuserid,jdbcType=VARCHAR}, 
-      #{fModifyusername,jdbcType=VARCHAR})
+      #{fModifyusername,jdbcType=VARCHAR}, #{open,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.demo.po.Menu" >
     insert into menu
@@ -196,6 +197,9 @@
       <if test="fModifyusername != null" >
         F_ModifyUserName,
       </if>
+      <if test="open != null" >
+        open,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="fModuleid != null" >
@@ -263,6 +267,9 @@
       </if>
       <if test="fModifyusername != null" >
         #{fModifyusername,jdbcType=VARCHAR},
+      </if>
+      <if test="open != null" >
+        #{open,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -341,6 +348,9 @@
       <if test="record.fModifyusername != null" >
         F_ModifyUserName = #{record.fModifyusername,jdbcType=VARCHAR},
       </if>
+      <if test="record.open != null" >
+        open = #{record.open,jdbcType=TINYINT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -369,7 +379,8 @@
       F_CreateUserName = #{record.fCreateusername,jdbcType=VARCHAR},
       F_ModifyDate = #{record.fModifydate,jdbcType=VARCHAR},
       F_ModifyUserId = #{record.fModifyuserid,jdbcType=VARCHAR},
-      F_ModifyUserName = #{record.fModifyusername,jdbcType=VARCHAR}
+      F_ModifyUserName = #{record.fModifyusername,jdbcType=VARCHAR},
+      open = #{record.open,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
