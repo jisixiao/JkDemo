@@ -20,11 +20,11 @@
 
         if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0) return;
 
-/*
+        /*
 
-此处 BUG  在子节点上 还会显示 添加按钮
+         此处 BUG  在子节点上 还会显示 添加按钮
 
- */
+         */
         var addStr = "<span class='button remove' id='removeBtn_" + treeNode.tId
             + "' title='add node' onfocus='this.blur();'></span>";
         addStr += "<span class='button add' id='addBtn_" + treeNode.tId + "'></span>";
@@ -49,10 +49,10 @@
 
                     //获取 fParentid为fpId的次子节点总数   data 模板 ：data: "orderId=" + orderId + "&commant=" + commant
                     var data = "fModuleid=" + fpId;
-                    $.aj_Post("/menuTree/getfModuleidContent",data,function (data) {
+                    $.aj_Post("/menuTree/getfModuleidContent", data, function (data) {
                         //获取 子节点个数
                         alert(data.data);
-                    },function (e) {
+                    }, function (e) {
                         alert("数据请求错误");
                     });
                     //判断 是否大于 9
@@ -64,8 +64,6 @@
                     });
                     return false;
                 });
-
-
 
 
         //删除 按钮
@@ -162,18 +160,33 @@
     function onRename(e, treeId, treeNode, isCancel) {
         //需要对名字做判定的，可以来这里写~~
 //        $.post('./index.php?r=data/modifyname&id='+treeNode.id+'&name='+treeNode.name);
-        alert("http://blog.csdn.net/wangjingna/article/details/50487111")
-        ;
+//        alert("http://blog.csdn.net/wangjingna/article/details/50487111")
+        alert(treeNode.fParentid + treeNode.fModuleid + treeNode.isParent + treeNode.fFullname);
+        var data = {
+            fModuleid: treeNode.fModuleid,
+            fFullname: treeNode.fFullname,
+            isParent: treeNode.isParent
+        }
+        $.ajaxTemplet.aj_Post("url", data, function (e) {
+
+        }, function (e) {
+
+        })
     }
     ;
-    //修改节点 后
+    //修改名称节点 前
     function beforeRename(treeId, treeNode, newName, isCancel) {
 //        if (newName.length == 0) {
 //            alert("节点名称不能为空.");
 //            return false;
 //        }
 //        return true;
-        alert("修改节点后")
+        if (confirm("你确信要添加？")) {
+            return true;
+        }
+        else {
+            return false;
+        }
 
     }
     //删除节点
@@ -189,9 +202,6 @@
     }
 
 
-
-
-
     var newCount = 1;
     /**
      * 添加父节点
@@ -199,40 +209,41 @@
      */
     function add(e) {
         //获取父节点的个数，数据库查询fParentid的个数
-        var pIdContent;
+        var fpId;
         //查询父节点  fParentid为0
-        var data = "fParentid = 0"
-        $.aj_Post("url",data,function (data) {
-            alert(data.data);
-        },function (e) {
+        var data = {
+            fParentid: 0
+        };
 
-            
+
+        $.ajaxTemplet.aj_Post("/menuTree/getfParentidContent.action", data, function (data) {
+
+            fpId = data.data;
+            var fmId = "0";
+            var zTree = $.fn.zTree.getZTreeObj("tree"),
+                isParent = e.data.isParent,
+
+                nodes = zTree.getSelectedNodes(),
+                treeNode = nodes[0];
+
+            treeNode = zTree.addNodes(null, {
+                //fModuleid 父节点 个数+1
+                fModuleid: parseInt(fpId) + 1,
+                fParentid: fmId,
+                isParent: isParent,
+                fFullname: "new node" + (newCount++)
+            });
+            if (treeNode) {
+                zTree.editName(treeNode[0]);
+            } else {
+                alert("叶子节点被锁定，无法增加子节点");
+            }
+        }, function (e) {
+
+
         });
-        //父节点
-        var fpId = pIdContent+1;
-
-        var zTree = $.fn.zTree.getZTreeObj("tree"),
-            isParent = e.data.isParent,
-
-            nodes = zTree.getSelectedNodes(),
-            treeNode = nodes[0];
-        //父节点  个数
-        var totalLeftCount;
-        var
 
 
-        treeNode = zTree.addNodes(null, {
-            //字节点是 父节点+1
-            fModuleid: (100 + newCount),
-            fParentid: 0,
-            isParent: isParent,
-            fFullname: "new node" + (newCount++)
-        });
-        if (treeNode) {
-            zTree.editName(treeNode[0]);
-        } else {
-            alert("叶子节点被锁定，无法增加子节点");
-        }
     }
     ;
     function edit() {
@@ -301,9 +312,6 @@
         if (h < 530) h = 530;
         demoIframe.height(h);
     }
-
-
-
 
 
 </script>

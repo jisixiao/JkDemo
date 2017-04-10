@@ -19,9 +19,9 @@ public class MenuTreeServiceImpl implements MenuTreeService {
 
     public int getfModuleidContent(String fModuleid) {
         MenuExample menuExample = new MenuExample();
-        menuExample.setOrderByClause(fModuleid);
-        MenuExample.Criteria criteria = menuExample.createCriteria();
 
+        MenuExample.Criteria criteria = menuExample.createCriteria();
+        criteria.andFParentidEqualTo(fModuleid);
         //查询  F_ParentId = fModuleid的 所有 信息
         int countByExample = menuMapper.countByExample(menuExample);
 
@@ -30,8 +30,9 @@ public class MenuTreeServiceImpl implements MenuTreeService {
 
     public int getfParentidContent(String fParentid) {
         MenuExample menuExample = new MenuExample();
-        menuExample.setOrderByClause(fParentid);
+
         MenuExample.Criteria criteria = menuExample.createCriteria();
+        criteria.andFParentidEqualTo(fParentid);
         int countByExample = menuMapper.countByExample(menuExample);
         return countByExample;
     }

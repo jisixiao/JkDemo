@@ -109,6 +109,7 @@ public class UserController extends BaseController<UserController> {
                 responseContent.setUrl("home/goHomeView.action");
 
                 request.getSession().setAttribute("userName", username);
+                request.getSession().setAttribute("user", user);
 
             }
         } else {

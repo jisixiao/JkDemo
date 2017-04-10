@@ -77,7 +77,6 @@ public class HomeController extends BaseController<HomeController> {
      */
     @RequestMapping("/goUserInfoView.action")
     public String goUserInfoView() {
-        logInfo(this.getClass().getName() + "====>  " + "goUserInfoView");
         return "UserInfo.jsp";
     }
 
