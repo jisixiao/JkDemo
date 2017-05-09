@@ -20,6 +20,8 @@ public class User {
 
     private String position;
 
+    private String authority;
+
     public int getId() {
         return id;
     }
@@ -74,5 +76,13 @@ public class User {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 }

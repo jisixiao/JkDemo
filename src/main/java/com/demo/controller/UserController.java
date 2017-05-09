@@ -1,6 +1,7 @@
 package com.demo.controller;
 
 import com.demo.po.User;
+import com.demo.utils.PageBean;
 import com.demo.utils.ResponseContent;
 import com.demo.utils.ValidResponse;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用户操作
@@ -20,6 +24,15 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController extends BaseController<UserController> {
 
 
+    /**
+     * 获取指定用户信息
+     *
+     * @param model
+     * @param request
+     * @param username
+     * @param password
+     * @return
+     */
     @RequestMapping("/getUser.action")
     public String getUser(Model model, HttpServletRequest request, String username, String password) {
         if (username != null && !username.trim().equals("")) {
@@ -90,6 +103,15 @@ public class UserController extends BaseController<UserController> {
     }
 
 
+    /**
+     * 登入
+     *
+     * @param username
+     * @param password
+     * @param request
+     * @return
+     */
+
     @RequestMapping("/login.action")
     @ResponseBody
     public ResponseContent login(String username, String password,
@@ -139,4 +161,54 @@ public class UserController extends BaseController<UserController> {
 
         return responseContent;
     }
+
+
+    @RequestMapping("/pagedQueryUser.action")
+    public ResponseContent pagedQueryUser(HttpServletRequest request , Model model) {
+        //http://localhost:8088/user/getAllUser.action?limit=10&start=0&page=1&_=1494313456664 404 (Not Found)
+        int size = Integer.parseInt(request.getParameter("limit"));
+        int start = Integer.parseInt(request.getParameter("start"));
+        int page = Integer.parseInt(request.getParameter("page"));
+
+        System.out.println("======>>  : " + size + "==== >.  ::  " + start + "== = >  > . " + page);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("size", size);
+        map.put("start", start);
+
+        List<User> users = service.pagedQueryUser(map);
+        List<User> allUser = service.getAllUser();
+
+        PageBean<User> pageBean = new PageBean<User>();
+        //设置当前页
+        pageBean.setCurrentPage(page);
+
+        //设置每页显示的记录数
+        pageBean.setPageSize(size);
+
+
+        ResponseContent responseContent = new ResponseContent();
+
+        int total = allUser.size();
+
+        //设置总记录数
+        pageBean.setTotalCount(total);
+
+        pageBean.setData(users);
+
+
+
+        responseContent.setData(pageBean);
+
+        //request.setAttribute("pageBean",pageBean);
+        //model.addAttribute("pageBean",pageBean);
+
+
+        return responseContent;
+
+
+    }
+
+
+
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd        
+	http://code.alibabatech.com/schema/dubbo        
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <bean id="userMsgServiceImpl" class="com.demo.service.impl.UserMsgServiceImpl"></bean>
+
+    <dubbo:application name="msgmng_server_"/>
+    <!-- 使用zookeeper注册中心暴露服务地址 -即zookeeper的所在服务器ip地址和端口号 -->
+    <dubbo:registry id="msgService" protocol="zookeeper" address="192.168.84.128:2181"/>
+
+    <dubbo:protocol name="dubbo" dispatcher="all" iothreads="16" threadpool="fixed" threads="500" port="20880"/>
+    <dubbo:provider delay="-1" timeout="30000" retries="0"/>
+
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="com.demo.service.UserMsgService"
+                   ref="userMsgServiceImpl" registry="msgService"/>
+
+</beans>  

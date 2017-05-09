@@ -1,7 +1,6 @@
 package com.demo.controller;
 
 import com.demo.po.Menu;
-import com.demo.utils.ResponseContent;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,6 +87,16 @@ public class HomeController extends BaseController<HomeController> {
     public String goTreeView(){
 
         return "TreeView.jsp";
+    }
+
+    /**
+     * 跳转到管理用户信息页面
+     * @return
+     */
+        @RequestMapping("/goUserMsgMagView.action")
+    public String goUserMsgMagView(){
+
+        return "TEXT.jsp";
     }
 
 }
