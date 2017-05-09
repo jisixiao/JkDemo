@@ -12,6 +12,8 @@
 
 
 <link rel="stylesheet" href="${ctx}/pluggable/bootstrap/css/bootstrap.min.css">
+<%--<link rel="stylesheet" href="${ctx}/pluggable/bootstrap/css/bootstrap-responsiv.css">--%>
+<%--<link rel="stylesheet" href="${ctx}/pluggable/bootstrap/css/dataTables.bootstra.css">--%>
 <link rel="stylesheet" href="${ctx}/fonts/font-awesome.min.css">
 <link rel="stylesheet" href="${ctx}/css/index.css">
 <link rel="stylesheet" href="${ctx}/css/skins/_all-skins.css">
@@ -34,6 +36,8 @@
 <%--<script src="${ctx}/pluggable/zTree/js/jquery.ztree.exedit-3.5.min.js"></script>--%>
 
 <script src="${ctx}/pluggable/bootstrap/js/bootstrap.min.js"></script>
+<%--<script src="${ctx}/pluggable/bootstrap/js/dataTables.bootstrap.js"></script>--%>
+<%--<script src="${ctx}/pluggable/bootstrap/js/jquery.dataTables.js"></script>--%>
 <script src="${ctx}/pluggable/bootstrap/validator/bootstrapValidator.min.js"></script>
 
 <script type="text/javascript">

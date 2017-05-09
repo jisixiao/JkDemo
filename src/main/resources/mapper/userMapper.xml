@@ -17,4 +17,14 @@
     <select id="getUser" resultMap="userRes" resultType="string">
         SELECT  * from user where username = #{username}
     </select>
+
+    <select id="getAllUser" resultType="java.util.Map">
+       SELECT  * from user
+
+    </select>
+
+    <select id="pagedQueryUser" parameterType="map" resultType="com.demo.po.User">
+
+      SELECT * FROM user LIMIT #{start},#{size}
+    </select>
 </mapper>

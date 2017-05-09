@@ -23,7 +23,7 @@
     <context:component-scan base-package="com.demo.service" />
 
 
-    <import resource="dubbo-server.xml"></import>
+    <!--<import resource="dubbo-server.xml"></import>-->
 
 
     <!-- 数据源dataSource  C3P0        -->

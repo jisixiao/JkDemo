@@ -3,7 +3,7 @@ package com.demo.controller;
 import com.demo.controller.base.Base;
 import com.demo.service.MenuService;
 import com.demo.service.MenuTreeService;
-import com.demo.service.userService;
+import com.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class BaseController<T> extends Base<T> {
 
     @Autowired
-    protected userService service;
+    protected UserService service;
     @Autowired
     protected MenuService menuService;
 
