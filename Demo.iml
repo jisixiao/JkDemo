@@ -23,6 +23,10 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0.52" level="application_server_libraries" />
+    <orderEntry type="library" name="Maven: org.apache.zookeeper:zookeeper:3.4.8" level="project" />
+    <orderEntry type="library" name="Maven: jline:jline:0.9.94" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty:3.7.0.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz:2.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:3.2.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:3.2.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:3.2.6.RELEASE" level="project" />
