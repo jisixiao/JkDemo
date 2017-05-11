@@ -6,6 +6,7 @@
 <head>
     <title>jquery DataTables插件自定义分页ajax实现</title>
     <%@ include file="/WEB-INF/common/base.jsp" %>
+    <%@ include file="/WEB-INF/common/dataTable.jsp" %>
 
     <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="http://cdn.bootcss.com/datatables/1.10.11/css/dataTables.bootstrap.min.css" rel="stylesheet"
@@ -31,6 +32,12 @@
                 <i class="fa fa-sign-in"></i> <sp:message code="sys.export"/>
                 导出
             </button>
+
+
+            <button type="button" class="btn btn-primary btn-sm" id="btn-edit">
+                <i class="fa fa-edit"></i> <sp:message code="sys.export"/>
+                编辑
+            </button>
             <button type="button" class="btn btn-primary btn-sm" id="btn-re">
                 <i class="fa fa-refresh"></i> <sp:message code="sys.refresh"/>
                 刷新
@@ -41,9 +48,7 @@
         <form id="queryForm" action=" " method="post">
             <div class="col-xs-2">
                 <input type="text" id="keyword" name="keyword" class="form-control input-sm"
-                       placeholder="
-<%--<sp:message code="sys.keyword"/>--%>
-                       清输入搜索信息">
+                       placeholder=" 清输入搜索信息">
             </div>
             <button type="button" class="btn btn-primary btn-sm" id="btn-query">
                 <i class="fa fa-search"></i> <sp:message code="sys.query"/>
@@ -66,7 +71,7 @@
             <th>部门ID</th>
             <th>职位</th>
             <th>权限</th>
-            <th>操作</th>
+            <%--<th>操作</th>--%>
         </tr>
         </thead>
     </table>
@@ -79,6 +84,7 @@
 
 
     $(function () {
+
         //添加、修改异步提交地址
         var url = "";
 
@@ -165,16 +171,16 @@
             },
             //列表表头字段
             columns: [
-                {"data": null,"width":"10px"},
-                {"data": "id"},
+                {"data": null, "width": "10px"},
+                {"data": null},
                 {"data": "username"},
                 {"data": "password"},
                 {"data": "department"},
                 {"data": "email"},
                 {"data": "departmentId"},
                 {"data": "position"},
-                {"data": "authority"},
-                {"data": null,"width":"60px"}
+                {"data": "authority"}
+//                {"data": null, "width": "60px"}
             ],
 
 
@@ -182,16 +188,21 @@
             columnDefs: [
                 {
                     targets: 0,
-                    defaultContent: "<input type='checkbox' name='checkList'>"
-                },
-                {
-                    targets: -1,
-                    defaultContent: "<div class='btn-group'>" +
-                    "<button id='editRow' class='btn btn-primary btn-sm' type='button'><i class='fa fa-edit'></i></button>" +
-                    "<button id='delRow' class='btn btn-primary btn-sm' type='button'><i class='fa fa-trash-o'></i></button>" +
-                    "</div>"
+                    defaultContent: "<input id='checkbox' type='checkbox' name='checkList'>"
                 }
+// ,
+//                {
+//                    targets: -1,
+//                    defaultContent: "<div class='btn-group'>" +
+//                    "<button id='editRow' class='btn btn-primary btn-sm' type='button'>" +
+//                    "<i class='fa fa-edit'></i></button>" +
+//                    "<button id='delRow' class='btn btn-primary btn-sm' type='button'>" +
+//                    "<i class='fa fa-trash-o'></i></button>" +
+//                    "</div>"
+//                }
             ],
+
+
             //在每次table被draw完后回调函数
             fnDrawCallback: function () {
                 var api = this.api();
@@ -204,17 +215,6 @@
         }).api();
         //此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
     });
-
-
-
-
-
-
-
-
-
-
-
 
 
     //查询按钮
@@ -247,6 +247,7 @@
 
     //checkbox全选
     $("#checkAll").on("click", function () {
+
         if ($(this).prop("checked") === true) {
             $("input[name='checkList']").prop("checked", $(this).prop("checked"));
             //$("#dataTable tbody tr").addClass('selected');
@@ -257,61 +258,91 @@
         }
     });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //修改
-    $("#dataTable tbody").on("click", "#editRow", function () {
-        var data = tables.api().row($(this).parents("tr")).data();
-        $("input[name=typeId]").val(data.typeIdStr);
-        $("input[name=typeNameCn]").val(data.typeNameCn);
-        $("input[name=typeNameEn]").val(data.typeNameEn);
+    /**
+     * 查看修改
+     */
+    $('#example tbody').on( 'click', '#editRow', function () {
+        var data = $('#example').DataTable().row($(this).parents('tr')).data();
+        alert("查看修改："+data[1] +","+ data[2] );
+    } );
+
+
+
+//    $("#example tbody").on("click", "#editRow", function () {
+
+//        alert("ssssssssssssssss");
+//        var data = tables.api().row($(this).parents("tr")).data();
+//        $("input[name=typeId]").val(data.typeIdStr);
+//        $("input[name=typeNameCn]").val(data.typeNameCn);
+//        $("input[name=typeNameEn]").val(data.typeNameEn);
 
         <%--url = "<%=path%>/goodsType/update";--%>
 
-        $("#editModal").modal("show");
-    });
 
-    $("#btn-submit").on("click", function(){
+//        $("#editModal").modal("show");
+//    });
+
+    $("#btn-submit").on("click", function () {
         <%--$.ajax({--%>
-            <%--cache: false,--%>
-            <%--type: "POST",--%>
-            <%--url: url,--%>
-            <%--data:$("#editForm").serialize(),--%>
-            <%--async: false,--%>
-            <%--error: function(request) {--%>
-                <%--showFail("Server Connection Error...");--%>
-            <%--},--%>
-            <%--success: function(data) {--%>
-                <%--if(data.status == 1){--%>
-                    <%--$("#editModal").modal("hide");--%>
-                    <%--showSuccess("<sp:message code='sys.oper.success'/>");--%>
-                    <%--tables.fnDraw();--%>
-                <%--}else{--%>
-                    <%--showFail("<sp:message code='sys.oper.fail'/>");--%>
-                <%--}--%>
-            <%--}--%>
+        <%--cache: false,--%>
+        <%--type: "POST",--%>
+        <%--url: url,--%>
+        <%--data:$("#editForm").serialize(),--%>
+        <%--async: false,--%>
+        <%--error: function(request) {--%>
+        <%--showFail("Server Connection Error...");--%>
+        <%--},--%>
+        <%--success: function(data) {--%>
+        <%--if(data.status == 1){--%>
+        <%--$("#editModal").modal("hide");--%>
+        <%--showSuccess("<sp:message code='sys.oper.success'/>");--%>
+        <%--tables.fnDraw();--%>
+        <%--}else{--%>
+        <%--showFail("<sp:message code='sys.oper.fail'/>");--%>
+        <%--}--%>
+        <%--}--%>
         <%--});--%>
     });
 
     //删除
     $("#dataTable tbody").on("click", "#delRow", function () {
-        var data = tables.api().row($(this).parents("tr")).data();
+
+
+        alert("ssssssssssssaaaaaaaaaaaaaaa");
+//        var data = tables.api().row($(this).parents("tr")).data();
         <%--if(confirm("是否确认删除这条信息?")){--%>
-            <%--$.ajax({--%>
-                <%--url:'<%=path%>/goodsType/del/'+data.typeIdStr,--%>
-                <%--type:'delete',--%>
-                <%--dataType: "json",--%>
-                <%--cache: "false",--%>
-                <%--success:function(data){--%>
-                    <%--if(data.status == 1){--%>
-                        <%--showSuccess("<sp:message code='sys.oper.success'/>");--%>
-                        <%--tables.api().row().remove().draw(false);--%>
-                    <%--}else{--%>
-                        <%--showFail("<sp:message code='sys.oper.fail'/>");--%>
-                    <%--}--%>
-                <%--},--%>
-                <%--error:function(err){--%>
-                    <%--showFail("Server Connection Error...");--%>
-                <%--}--%>
-            <%--});--%>
+        <%--$.ajax({--%>
+        <%--url:'<%=path%>/goodsType/del/'+data.typeIdStr,--%>
+        <%--type:'delete',--%>
+        <%--dataType: "json",--%>
+        <%--cache: "false",--%>
+        <%--success:function(data){--%>
+        <%--if(data.status == 1){--%>
+        <%--showSuccess("<sp:message code='sys.oper.success'/>");--%>
+        <%--tables.api().row().remove().draw(false);--%>
+        <%--}else{--%>
+        <%--showFail("<sp:message code='sys.oper.fail'/>");--%>
+        <%--}--%>
+        <%--},--%>
+        <%--error:function(err){--%>
+        <%--showFail("Server Connection Error...");--%>
+        <%--}--%>
+        <%--});--%>
         <%--}--%>
     });
 
