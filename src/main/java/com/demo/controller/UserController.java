@@ -164,20 +164,33 @@ public class UserController extends BaseController<UserController> {
 
 
     @RequestMapping("/pagedQueryUser.action")
-    public ResponseContent pagedQueryUser(HttpServletRequest request , Model model) {
+    @ResponseBody
+    public Object pagedQueryUser(HttpServletRequest request , Model model) {
         //http://localhost:8088/user/getAllUser.action?limit=10&start=0&page=1&_=1494313456664 404 (Not Found)
         int size = Integer.parseInt(request.getParameter("limit"));
         int start = Integer.parseInt(request.getParameter("start"));
         int page = Integer.parseInt(request.getParameter("page"));
+        String _ = request.getParameter("_");
 
-        System.out.println("======>>  : " + size + "==== >.  ::  " + start + "== = >  > . " + page);
 
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("size", size);
-        map.put("start", start);
+        Map<String, Object> maps = new HashMap<String, Object>();
+        maps.put("size", size);
+        maps.put("start", start);
 
-        List<User> users = service.pagedQueryUser(map);
-        List<User> allUser = service.getAllUser();
+        List<User> users = service.pagedQueryUser(maps);
+        List<User> allUser = service.getAllUser();//所有的用户
+
+
+
+
+
+
+        ResponseContent responseContent = new ResponseContent();
+
+        int total = allUser.size();
+
+
+        //=========================pageBean 信息=========================================
 
         PageBean<User> pageBean = new PageBean<User>();
         //设置当前页
@@ -186,20 +199,15 @@ public class UserController extends BaseController<UserController> {
         //设置每页显示的记录数
         pageBean.setPageSize(size);
 
-
-        ResponseContent responseContent = new ResponseContent();
-
-        int total = allUser.size();
-
         //设置总记录数
         pageBean.setTotalCount(total);
 
         pageBean.setData(users);
+        //==================================================================
 
-
-
-        responseContent.setData(pageBean);
-
+        responseContent.setCode(total);//设置总数
+        responseContent.setData(users);
+        System.out.println("==================>>>>   :  "+users.get(0).getId());
         //request.setAttribute("pageBean",pageBean);
         //model.addAttribute("pageBean",pageBean);
 
@@ -208,6 +216,10 @@ public class UserController extends BaseController<UserController> {
 
 
     }
+
+
+
+
 
 
 
