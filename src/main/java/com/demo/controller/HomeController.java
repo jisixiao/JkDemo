@@ -96,7 +96,7 @@ public class HomeController extends BaseController<HomeController> {
         @RequestMapping("/goUserMsgMagView.action")
     public String goUserMsgMagView(){
 
-        return "UserMsgMag.jsp";
+        return "Text.jsp";
     }
 
 }

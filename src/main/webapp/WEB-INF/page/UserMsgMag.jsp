@@ -6,7 +6,7 @@
 <head>
     <title>jquery DataTables插件自定义分页ajax实现</title>
     <%@ include file="/WEB-INF/common/base.jsp" %>
-    <%@ include file="/WEB-INF/common/dataTable.jsp" %>
+    <%--<%@ include file="/WEB-INF/common/dataTable.jsp" %>--%>
 
     <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="http://cdn.bootcss.com/datatables/1.10.11/css/dataTables.bootstrap.min.css" rel="stylesheet"
@@ -58,10 +58,10 @@
     </div>
 
 
-    <table id="example" class="display table-striped table-bordered table-hover table-condensed" cellspacing="0"
-           width="100%">
+    <table id="dataTable" class="table table-striped table-bordered table-hover table-condensed" align="center">
+
         <thead>
-        <tr>
+        <tr class="info">
             <td><input type="checkbox" id="checkAll"></td>
             <th>编号</th>
             <th>姓名</th>
@@ -71,7 +71,7 @@
             <th>部门ID</th>
             <th>职位</th>
             <th>权限</th>
-            <%--<th>操作</th>--%>
+            <th>操作</th>
         </tr>
         </thead>
     </table>
@@ -113,7 +113,7 @@
         };
 
         //初始化表格
-        var table = $("#example").dataTable({
+        var table = $("#dataTable").dataTable({
             language: lang,  //提示信息
 //            autoWidth: true,  //禁用自动调整列宽
             stripeClasses: ["odd", "even"],  //为奇偶行加上样式，兼容不支持CSS伪类的场合
@@ -179,8 +179,8 @@
                 {"data": "email"},
                 {"data": "departmentId"},
                 {"data": "position"},
-                {"data": "authority"}
-//                {"data": null, "width": "60px"}
+                {"data": "authority"},
+                {"data": null, "width": "60px"}
             ],
 
 
@@ -190,16 +190,17 @@
                     targets: 0,
                     defaultContent: "<input id='checkbox' type='checkbox' name='checkList'>"
                 }
-// ,
-//                {
-//                    targets: -1,
-//                    defaultContent: "<div class='btn-group'>" +
-//                    "<button id='editRow' class='btn btn-primary btn-sm' type='button'>" +
-//                    "<i class='fa fa-edit'></i></button>" +
-//                    "<button id='delRow' class='btn btn-primary btn-sm' type='button'>" +
-//                    "<i class='fa fa-trash-o'></i></button>" +
-//                    "</div>"
-//                }
+                ,
+                {
+                    targets: -1,
+
+                    defaultContent: "<div class='btn-group'>" +
+                    "<button id='editRow' class='btn btn-primary btn-sm' type='button'>" +
+                    "<i class='fa fa-edit'></i></button>" +
+                    "<button id='delRow' class='btn btn-primary btn-sm' type='button'>" +
+                    "<i class='fa fa-trash-o'></i></button>" +
+                    "</div>"
+                }
             ],
 
 
@@ -212,7 +213,7 @@
                     cell.innerHTML = startIndex + i + 1;
                 });
             }
-        }).api();
+        });
         //此处需调用api()方法,否则返回的是JQuery对象而不是DataTables的API对象
     });
 
@@ -247,8 +248,7 @@
 
     //checkbox全选
     $("#checkAll").on("click", function () {
-
-        if ($(this).prop("checked") === true) {
+        if ($(this).prop("checked") == true) {
             $("input[name='checkList']").prop("checked", $(this).prop("checked"));
             //$("#dataTable tbody tr").addClass('selected');
             $(this).hasClass('selected')
@@ -258,93 +258,67 @@
         }
     });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //修改
-    /**
-     * 查看修改
-     */
-    $('#example tbody').on( 'click', '#editRow', function () {
-        var data = $('#example').DataTable().row($(this).parents('tr')).data();
-        alert("查看修改："+data[1] +","+ data[2] );
-    } );
-
-
-
-//    $("#example tbody").on("click", "#editRow", function () {
-
-//        alert("ssssssssssssssss");
+    $("#dataTable tbody").on("click", "button#editRow", function () {
 //        var data = tables.api().row($(this).parents("tr")).data();
+        alert("ssssssssssssss");
 //        $("input[name=typeId]").val(data.typeIdStr);
 //        $("input[name=typeNameCn]").val(data.typeNameCn);
 //        $("input[name=typeNameEn]").val(data.typeNameEn);
 
         <%--url = "<%=path%>/goodsType/update";--%>
 
-
 //        $("#editModal").modal("show");
-//    });
+    });
 
     $("#btn-submit").on("click", function () {
-        <%--$.ajax({--%>
-        <%--cache: false,--%>
-        <%--type: "POST",--%>
-        <%--url: url,--%>
-        <%--data:$("#editForm").serialize(),--%>
-        <%--async: false,--%>
-        <%--error: function(request) {--%>
-        <%--showFail("Server Connection Error...");--%>
-        <%--},--%>
-        <%--success: function(data) {--%>
-        <%--if(data.status == 1){--%>
-        <%--$("#editModal").modal("hide");--%>
-        <%--showSuccess("<sp:message code='sys.oper.success'/>");--%>
-        <%--tables.fnDraw();--%>
-        <%--}else{--%>
-        <%--showFail("<sp:message code='sys.oper.fail'/>");--%>
-        <%--}--%>
-        <%--}--%>
-        <%--});--%>
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: url,
+            data: $("#editForm").serialize(),
+            async: false,
+            error: function (request) {
+                showFail("Server Connection Error...");
+            },
+            success: function (data) {
+                if (data.status == 1) {
+                    $("#editModal").modal("hide");
+                    showSuccess("<sp:message code='sys.oper.success'/>");
+                    tables.fnDraw();
+                } else {
+                    showFail("<sp:message code='sys.oper.fail'/>");
+                }
+            }
+        });
     });
 
     //删除
     $("#dataTable tbody").on("click", "#delRow", function () {
+        var data = tables.api().row($(this).parents("tr")).data();
+        alert(data)
 
-
-        alert("ssssssssssssaaaaaaaaaaaaaaa");
-//        var data = tables.api().row($(this).parents("tr")).data();
-        <%--if(confirm("是否确认删除这条信息?")){--%>
-        <%--$.ajax({--%>
-        <%--url:'<%=path%>/goodsType/del/'+data.typeIdStr,--%>
-        <%--type:'delete',--%>
-        <%--dataType: "json",--%>
-        <%--cache: "false",--%>
-        <%--success:function(data){--%>
-        <%--if(data.status == 1){--%>
-        <%--showSuccess("<sp:message code='sys.oper.success'/>");--%>
-        <%--tables.api().row().remove().draw(false);--%>
-        <%--}else{--%>
-        <%--showFail("<sp:message code='sys.oper.fail'/>");--%>
-        <%--}--%>
-        <%--},--%>
-        <%--error:function(err){--%>
-        <%--showFail("Server Connection Error...");--%>
-        <%--}--%>
-        <%--});--%>
-        <%--}--%>
+        if (confirm("是否确认删除这条信息?")) {
+            $.ajax({
+                <%--url:'<%=path%>/goodsType/del/'+data.typeIdStr,--%>
+                type: 'delete',
+                dataType: "json",
+                cache: "false",
+                success: function (data) {
+                    if (data.status == 1) {
+                        showSuccess("<sp:message code='sys.oper.success'/>");
+                        tables.api().row().remove().draw(false);
+                    } else {
+                        showFail("<sp:message code='sys.oper.fail'/>");
+                    }
+                },
+                error: function (err) {
+                    showFail("Server Connection Error...");
+                }
+            });
+        }
     });
+
 
 </script>
 </body>

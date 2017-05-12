@@ -207,7 +207,6 @@ public class UserController extends BaseController<UserController> {
 
         responseContent.setCode(total);//设置总数
         responseContent.setData(users);
-        System.out.println("==================>>>>   :  "+users.get(0).getId());
         //request.setAttribute("pageBean",pageBean);
         //model.addAttribute("pageBean",pageBean);
 
