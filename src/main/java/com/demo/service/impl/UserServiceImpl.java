@@ -33,4 +33,21 @@ public class UserServiceImpl implements UserService {
     public List<User> pagedQueryUser(Map<String, Object> map) {
         return userMapper.pagedQueryUser(map);
     }
+
+    public void deleteUserById(int id) {
+        userMapper.deleteUserById(id);
+    }
+
+    public void updataUserById(User user) {
+System.out.println(user.getId());
+
+        userMapper.updataUserById(user.getId(),
+                user.getUsername(),
+                user.getPassword(),
+                user.getDepartment(),
+                user.getEmail(),
+                user.getDepartmentId(),
+                user.getPosition(),
+                user.getAuthority());
+    }
 }

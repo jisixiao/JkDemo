@@ -21,7 +21,9 @@
 <%--zTree--%>
 <link rel="stylesheet" href="${ctx}/pluggable/zTree/css/zTreeStyle/metro.css">
 <%--<link rel="stylesheet" href="${ctx}/pluggable/zTree/css/zTreeStyle/demo.css">--%>
-<%--<link rel="stylesheet" href="${ctx}/pluggable/zTree/css/zTreeStyle/zTreeStyle.css">--%>
+
+<%--dataTable--%>
+<link rel="stylesheet" href="${ctx}/pluggable/dataTable/css/jquery.dataTables.min.css">
 
 
 
@@ -37,7 +39,10 @@
 
 <script src="${ctx}/pluggable/bootstrap/js/bootstrap.min.js"></script>
 <%--<script src="${ctx}/pluggable/bootstrap/js/dataTables.bootstrap.js"></script>--%>
-<%--<script src="${ctx}/pluggable/bootstrap/js/jquery.dataTables.js"></script>--%>
+
+<%--dataTable--%>
+<script src="${ctx}/pluggable/dataTable/js/jquery.dataTables.min.js"></script>
+
 <script src="${ctx}/pluggable/bootstrap/validator/bootstrapValidator.min.js"></script>
 
 <script type="text/javascript">

@@ -12,8 +12,9 @@
         <result property="email" column="email"></result>
         <result property="departmentId" column="departmentId"></result>
         <result property="position" column="position"></result>
+        <result property="authority" column="authority"></result>
     </resultMap>
-    
+
     <select id="getUser" resultMap="userRes" resultType="string">
         SELECT  * from user where username = #{username}
     </select>
@@ -27,4 +28,43 @@
 
       SELECT * FROM user LIMIT #{start},#{size}
     </select>
+
+
+    <delete id="deleteUserById">
+
+        delete from user where id = #{id}
+    </delete>
+
+    <update id="updataUserById" parameterType="string">
+        UPDATE user
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="department != null">
+                department = #{department},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="departmentId != null">
+                departmentId = #{departmentId},
+            </if>
+
+            <if test="position != null">
+                position = #{position},
+            </if>
+
+            <if test="authority != null">
+                authority = #{authority}
+            </if>
+        </set>
+
+        WHERE id = #{id}
+    </update>
+
+
 </mapper>

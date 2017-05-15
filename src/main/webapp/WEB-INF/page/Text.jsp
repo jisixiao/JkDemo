@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -7,9 +6,84 @@
     <link href="http://cdn.bootcss.com/datatables/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet"
           media="screen">
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <title>Title</title>
 </head>
 <body>
+<%--==========================Bootstrap Modal START=============================================--%>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" style="height: 500px" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <form id="dialogFrom">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新增</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group"  >
+                        <label for="txt_userid"></label>
+                        <input type="text" name="username" class="form-control" id="txt_userid"
+                               placeholder="用户ID">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txt_username">用户名</label>
+                        <input type="text" name="username" class="form-control" id="txt_username"
+                               placeholder="用户名">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txt_password">密码</label>
+                        <input type="text" name="password" class="form-control" id="txt_password"
+                               placeholder="密码">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="txt_department">部门</label>
+                        <input type="text" name="department" class="form-control" id="txt_department"
+                               placeholder="部门">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txt_email">Email</label>
+                        <input type="text" name="email" class="form-control" id="txt_email"
+                               placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_departmentId">部门ID</label>
+                        <input type="text" name="departmentId" class="form-control" id="txt_departmentId"
+                               placeholder="部门ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_position">职位</label>
+                        <input type="text" name="position" class="form-control" id="txt_position"
+                               placeholder="职位">
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_authority">权限</label>
+                        <input type="text" name="authority" class="form-control" id="txt_authority" placeholder="权限">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span
+                            class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭
+                    </button>
+                    <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal">
+
+                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<%--==============================Bootstrap Modal END==========================================--%>
+
 
 <div class="row">
     <form id="queryForm" action=" " method="post">
@@ -23,8 +97,6 @@
         </button>
     </form>
 </div>
-
-
 
 
 <table id="example" class="display" cellspacing="0" width="100%">
@@ -48,7 +120,7 @@
 </body>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         //提示信息
         var lang = {
             "sProcessing": "处理中...",
@@ -74,9 +146,7 @@
         };
 
 
-
-
-        var table = $('#example').DataTable( {
+        var table = $('#example').DataTable({
             language: lang,  //提示信息
             stripeClasses: ["odd", "even"],  //为奇偶行加上样式，兼容不支持CSS伪类的场合
             processing: true,  //隐藏加载提示,自行处理
@@ -136,7 +206,7 @@
                 {"data": "authority"},
                 {"data": null, "width": "60px"}
             ],
-            "columnDefs": [ {
+            "columnDefs": [{
                 "targets": -1,
                 "data": null,
                 "defaultContent": "<div class='btn-group'>" +
@@ -145,30 +215,86 @@
                 "<button id='delRow' class='btn btn-primary btn-sm' type='button'>" +
                 "<i class='fa fa-trash-o'></i></button>" +
                 "</div>"
-            } ]
-        } );
+            }]
+        });
 
-        $('#example tbody').on( 'click', '#editRow', function () {
-//            var data = table.row( $(this).parents('tr') ).data();
+
+        /**
+         * 修改 按钮
+         */
+        $('#example tbody').on('click', '#editRow', function () {
             var data = table.row($(this).parents("tr")).data();
 
-            alert( data.username +"'s edit is: "+ data.authority);
-
-        } );
-
-        $('#example tbody').on( 'click', '#delRow', function () {
-            var data = table.row( $(this).parents('tr') ).data();
-            alert( data[0] +"'s dele is: "+ data[ 5 ] );
-        } );
-    } );
+//            alert(data.email + "'s edit is: " + data.department);
 
 
+            $("#myModalLabel").text("修改信息");
 
-    //查询按钮
-    $("#btn-query").on("click", function () {
-        var keyword = $("#keyword").val();
-        table.search(keyword).draw();
+            document.getElementById("txt_userid").defaultValue = data.id;//input这是默认的值
 
+            document.getElementById("txt_username").defaultValue = data.username;//input这是默认的值
+            document.getElementById("txt_password").defaultValue = data.password;//input这是默认的值
+            document.getElementById("txt_department").defaultValue = data.department;//input这是默认的值
+            document.getElementById("txt_email").defaultValue = data.email;//input这是默认的值
+            document.getElementById("txt_departmentId").defaultValue = data.departmentId;//input这是默认的值
+            document.getElementById("txt_position").defaultValue = data.position;//input这是默认的值
+            document.getElementById("txt_authority").defaultValue = data.authority;//input这是默认的值
+
+            $('#myModal').modal();//show出这个dialog
+
+        });
+
+        /**
+         * 删除 按钮
+         */
+        $('#example tbody').on('click', '#delRow', function () {
+            var data = table.row($(this).parents('tr')).data();
+//            alert(data[0] + "'s dele is: " + data[5]);
+
+            $.ajax({
+                    data: {id: data.id},
+                    type: "post",
+                    contentType: "application/x-www-form-urlencoded",
+                    datatype: "json",
+                    url: ctx + "/user/deleteUserById.action",
+                    success: function (data) {
+//                        alert(data.url);
+//                        window.location.href = ctx + "/" + data.url;
+                        table.ajax.reload().draw();//删除之后重新刷新
+                    }
+
+                }
+            )
+        });
+
+
+        //查询按钮
+        $("#btn-query").on("click", function () {
+            var keyword = $("#keyword").val();
+            table.search(keyword).draw();
+
+        });
+
+
+        $("#btn_submit").click(function () {
+            $.ajax({
+                type: "post",
+                url: ctx + "/user/updataUserById.action",
+                data: $("#dialogFrom").serialize(),//获取表单的信息
+                contentType: "application/x-www-form-urlencoded",
+                dataType: "json",
+                success: function (data) {
+
+//                    window.location.href = ctx + "/" + data.url;
+                    table.ajax.reload().draw();// 重新刷新
+                },
+                error: function () {
+
+                }
+            });
+        });
     });
+
+
 </script>
 </html>

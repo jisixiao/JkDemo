@@ -111,14 +111,11 @@ public class UserController extends BaseController<UserController> {
      * @param request
      * @return
      */
-
     @RequestMapping("/login.action")
     @ResponseBody
     public ResponseContent login(String username, String password,
                                  HttpServletRequest request) {
         ResponseContent responseContent = new ResponseContent();
-        logInfo(this.getClass().getName() + "   ==> username is :" + username);
-        logInfo(this.getClass().getName() + "   ==> password is :" + password);
         if (username != null && !username.trim().equals("")) {
             User user = service.getUser(username);
             String passWord = user.getPassword();
@@ -163,6 +160,12 @@ public class UserController extends BaseController<UserController> {
     }
 
 
+    /**
+     *  分页查询 用户信息
+     * @param request
+     * @param model
+     * @return
+     */
     @RequestMapping("/pagedQueryUser.action")
     @ResponseBody
     public Object pagedQueryUser(HttpServletRequest request , Model model) {
@@ -216,6 +219,45 @@ public class UserController extends BaseController<UserController> {
 
     }
 
+
+
+
+
+
+    @RequestMapping("/deleteUserById.action")
+    @ResponseBody
+    public ResponseContent  deleteUserById(HttpServletRequest request,String id){
+        String userId = request.getParameter("id");
+
+
+        logInfo("UserController  ====  >>   id  is : "+ id);
+
+        int intId = Integer.parseInt(userId);
+
+        service.deleteUserById(intId);
+
+        ResponseContent responseContent = new ResponseContent();
+
+        responseContent.setUrl("home/goUserMsgMagView.action");
+        return  responseContent;
+    }
+
+
+
+    @RequestMapping("/updataUserById.action")
+    public ResponseContent  updataUserById(User user){
+
+        logInfo("UserController  ==== updataUserById >>   username  is : "+ user.getId());
+
+        service.updataUserById(user);
+
+
+        ResponseContent responseContent = new ResponseContent();
+
+
+        return  responseContent;
+
+    }
 
 
 
