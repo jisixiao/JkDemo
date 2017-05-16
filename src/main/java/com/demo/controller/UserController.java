@@ -245,15 +245,15 @@ public class UserController extends BaseController<UserController> {
 
 
     @RequestMapping("/updataUserById.action")
+    @ResponseBody
     public ResponseContent  updataUserById(User user){
 
-        logInfo("UserController  ==== updataUserById >>   username  is : "+ user.getId());
 
         service.updataUserById(user);
 
-
         ResponseContent responseContent = new ResponseContent();
 
+        responseContent.setUrl("home/goUserMsgMagView.action");
 
         return  responseContent;
 

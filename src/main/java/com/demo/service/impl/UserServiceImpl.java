@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public void updataUserById(User user) {
-System.out.println(user.getId());
 
         userMapper.updataUserById(user.getId(),
                 user.getUsername(),

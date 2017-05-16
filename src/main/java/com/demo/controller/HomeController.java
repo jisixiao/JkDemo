@@ -86,7 +86,8 @@ public class HomeController extends BaseController<HomeController> {
     @RequestMapping("/goTreeView.action")
     public String goTreeView(){
 
-        return "TreeView.jsp";
+        //return "TreeView.jsp";
+        return "DepartmentMang.jsp";
     }
 
     /**

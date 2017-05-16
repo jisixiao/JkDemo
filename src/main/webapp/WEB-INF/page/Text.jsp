@@ -22,9 +22,9 @@
                     <h4 class="modal-title" id="myModalLabel">新增</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group"  >
-                        <label for="txt_userid"></label>
-                        <input type="text" name="username" class="form-control" id="txt_userid"
+                    <div class="form-group">
+                        <label for="txt_userid">用户ID</label>
+                        <input type="text" name="id" class="form-control" id="txt_userid"
                                placeholder="用户ID">
                     </div>
 
@@ -271,11 +271,22 @@
         //查询按钮
         $("#btn-query").on("click", function () {
             var keyword = $("#keyword").val();
-            table.search(keyword).draw();
-
+            alert(keyword);
+//            table.search(keyword).draw( );
+        //以下为查询时候动态添加查询参数方法
+            var oSettings = table.fnSettings();
+            oSettings.aoServerParams.push({
+                "fn": function (aoData) {
+                    aoData.push({
+                        "name": "thisisok",
+                        "value": keyword
+                    });
+                }
+            });
+            table.fnDraw();
         });
 
-
+        //修改弹框 -- 提交
         $("#btn_submit").click(function () {
             $.ajax({
                 type: "post",
@@ -286,10 +297,10 @@
                 success: function (data) {
 
 //                    window.location.href = ctx + "/" + data.url;
+
                     table.ajax.reload().draw();// 重新刷新
                 },
                 error: function () {
-
                 }
             });
         });
