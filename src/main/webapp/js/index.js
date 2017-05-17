@@ -416,7 +416,7 @@
                 $.learuntab.init();
             },
             error:function () {
-                alert("error");
+                alert("getMenu  error");
             }
 
         });

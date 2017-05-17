@@ -25,6 +25,8 @@
     <result column="F_ModifyUserId" property="fModifyuserid" jdbcType="VARCHAR" />
     <result column="F_ModifyUserName" property="fModifyusername" jdbcType="VARCHAR" />
     <result column="open" property="open" jdbcType="TINYINT" />
+    <result column="authority" property="authority" jdbcType="VARCHAR" />
+
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -104,6 +106,15 @@
       order by ${orderByClause}
     </if>
   </select>
+
+  <select id="selectAllMenu" resultMap="BaseResultMap">
+    SELECT * FROM  menu
+
+  </select>
+
+
+
+
   <delete id="deleteByExample" parameterType="com.demo.po.MenuExample" >
     delete from menu
     <if test="_parameter != null" >

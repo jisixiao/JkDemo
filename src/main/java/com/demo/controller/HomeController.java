@@ -1,11 +1,13 @@
 package com.demo.controller;
 
 import com.demo.po.Menu;
+import com.demo.po.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,9 +54,31 @@ public class HomeController extends BaseController<HomeController> {
      */
     @RequestMapping("/menu/getMenuList.action")
     @ResponseBody
-    public List<Menu> getMenuList() {
+    public List<Menu> getMenuList(HttpServletRequest request) {
         List<Menu> menuList = menuService.getMenuList();
-        return menuList;
+
+        User user = (User) request.getSession().getAttribute("user");
+        String authority = user.getAuthority();
+        if (authority.equals("0"))
+            return menuList;
+        else if (authority.equals("1")) {
+            List<Menu> au_Menu = new ArrayList<Menu>();
+
+            for (Menu menu : menuList) {
+                logInfo("HomeController ================fFullname  is >>>>>>>>>" + menu.getfFullname());
+                logInfo("HomeController ================Authority  is >>>>>>>>>" + menu.getAuthority());
+                String menu_authority = menu.getAuthority();
+                if (("1").equals(menu_authority)){
+                    au_Menu.add(menu);
+                }
+
+            }
+            return  au_Menu;
+
+        }
+
+
+        return null;
     }
 
     /**
@@ -81,10 +105,11 @@ public class HomeController extends BaseController<HomeController> {
 
     /**
      * 跳转到菜单树页面
+     *
      * @return
      */
     @RequestMapping("/goTreeView.action")
-    public String goTreeView(){
+    public String goTreeView() {
 
         //return "TreeView.jsp";
         return "DepartmentMang.jsp";
@@ -92,10 +117,11 @@ public class HomeController extends BaseController<HomeController> {
 
     /**
      * 跳转到管理用户信息页面
+     *
      * @return
      */
-        @RequestMapping("/goUserMsgMagView.action")
-    public String goUserMsgMagView(){
+    @RequestMapping("/goUserMsgMagView.action")
+    public String goUserMsgMagView() {
 
         return "Text.jsp";
     }

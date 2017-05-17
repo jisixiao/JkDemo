@@ -29,7 +29,6 @@
 
 
 <script src="${ctx}/pluggable/jquery/jQuery-2.2.0.min.js?v=1.0"></script>
-<script src="${ctx}/js/index.js"></script>
 <script src="${ctx}/js/templet.js"></script>
 <%--zTree--%>
 <script src="${ctx}/pluggable/zTree/js/jquery.ztree.all-3.5.min.js"></script>
