@@ -1,6 +1,7 @@
 package com.demo.controller;
 
 import com.demo.po.User;
+import com.demo.service.UserService;
 import com.demo.utils.PageBean;
 import com.demo.utils.ResponseContent;
 import com.demo.utils.ValidResponse;
@@ -36,7 +37,7 @@ public class UserController extends BaseController<UserController> {
     @RequestMapping("/getUser.action")
     public String getUser(Model model, HttpServletRequest request, String username, String password) {
         if (username != null && !username.trim().equals("")) {
-            User user = service.getUser(username);
+            User user = userService.getUser(username);
             String passWord = user.getPassword();
             if (passWord.equals(password)) {
                 request.getSession().setAttribute("userName", username);
@@ -62,7 +63,7 @@ public class UserController extends BaseController<UserController> {
     @ResponseBody
     ValidResponse checkNameValid(@RequestParam String username) {
         boolean result = true;
-        User user = service.getUser(username);
+        User user = userService.getUser(username);
 
         if (user == null) {
             result = false;
@@ -86,7 +87,7 @@ public class UserController extends BaseController<UserController> {
     @ResponseBody
     ValidResponse checkPassWordValid(@RequestParam String username, String password) {
         boolean result = false;
-        User user = service.getUser(username);
+        User user = userService.getUser(username);
 
         if (user != null) {
             if (user.getPassword().equals(password)) {
@@ -117,7 +118,7 @@ public class UserController extends BaseController<UserController> {
                                  HttpServletRequest request) {
         ResponseContent responseContent = new ResponseContent();
         if (username != null && !username.trim().equals("")) {
-            User user = service.getUser(username);
+            User user = userService.getUser(username);
             String passWord = user.getPassword();
 
             if (passWord.equals(password)) {
@@ -180,8 +181,8 @@ public class UserController extends BaseController<UserController> {
         maps.put("size", size);
         maps.put("start", start);
 
-        List<User> users = service.pagedQueryUser(maps);
-        List<User> allUser = service.getAllUser();//所有的用户
+        List<User> users = userService.pagedQueryUser(maps);
+        List<User> allUser = userService.getAllUser();//所有的用户
 
 
 
@@ -234,7 +235,7 @@ public class UserController extends BaseController<UserController> {
 
         int intId = Integer.parseInt(userId);
 
-        service.deleteUserById(intId);
+        userService.deleteUserById(intId);
 
         ResponseContent responseContent = new ResponseContent();
 
@@ -249,7 +250,7 @@ public class UserController extends BaseController<UserController> {
     public ResponseContent  updataUserById(User user){
 
 
-        service.updataUserById(user);
+        userService.updataUserById(user);
 
         ResponseContent responseContent = new ResponseContent();
 
