@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class BaseController<T> extends Base<T> {
 
     @Autowired
-    protected UserService service;
+    protected UserService userService;
     @Autowired
     protected MenuService menuService;
 
