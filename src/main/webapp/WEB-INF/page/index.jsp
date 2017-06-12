@@ -126,6 +126,10 @@
     });
     $("#subBtn").click(function () {
 
+        /**
+         * 单个 数据进行封装
+         * @type {{username: (*), password: (*)}}
+         */
         var userInfo = {
             username: $("#username").val(),
             password: $("#password").val()
@@ -133,10 +137,11 @@
         $.ajax({
             type: "post",
             url: ctx + "/user/login.action",
-            data: $("#defaultForm").serialize(),
+            data: $("#defaultForm").serialize(),//获取表单的信息
             contentType: "application/x-www-form-urlencoded",
             dataType: "json",
             success: function (data) {
+
                 window.location.href=ctx+"/"+data.url;
             },
             error: function () {

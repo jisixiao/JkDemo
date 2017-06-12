@@ -47,6 +47,8 @@ public class Menu {
 
     private boolean open;
 
+    private String authority;//权限
+
     public String getfModuleid() {
         return fModuleid;
     }
@@ -229,5 +231,13 @@ public class Menu {
 
     public void setOpen(boolean open) {
         this.open = open;
+    }
+
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 }

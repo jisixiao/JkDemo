@@ -22,7 +22,8 @@ public class MenuServiceImpl implements MenuService {
         MenuExample menuExample = new MenuExample();
         MenuExample.Criteria criteria = menuExample.createCriteria();
 
-        List<Menu> menuList = menuMapper.selectByExample(menuExample);
+        //List<Menu> menuList = menuMapper.selectByExample(menuExample);
+        List<Menu> menuList = menuMapper.selectAllMenu();
 
         return menuList;
     }

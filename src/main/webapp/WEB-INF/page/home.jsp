@@ -4,8 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>LeaRun敏捷开发框架</title>
+    <title>LeaRn</title>
     <%@ include file="/WEB-INF/common/base.jsp" %>
+    <script src="${ctx}/js/index.js"></script>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini" style="overflow:hidden;">
 
@@ -18,9 +20,9 @@
 <div class="wrapper">
     <!--头部信息-->
     <header class="main-header">
-        <a href="http://www.learun.cn/adms/index.html" target="_blank" class="logo">
+        <a href=ctx+"/home/goHomeView.action" target="_blank" class="logo">
             <span class="logo-mini">LR</span>
-            <span class="logo-lg">learun<strong>敏捷框架</strong></span>
+            <span class="logo-lg">learun<strong>LeaRn</strong></span>
         </a>
         <nav class="navbar navbar-static-top">
             <a class="sidebar-toggle">
@@ -49,11 +51,11 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="${ctx}/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">administrator</span>
+                            <span class="hidden-xs">${sessionScope.userName}</span>
                         </a>
                         <ul class="dropdown-menu pull-right">
                             <li>
-                                <a class="menuItem" data-id="userInfo" id="userInfo"  href="/home/goUserInfoView.action"  >
+                                <a class="menuItem" data-id="userInfo" id="userInfo" href="/home/goUserInfoView.action">
                                     <i class="fa fa-user"></i>
                                     个人信息
                                 </a>
@@ -68,7 +70,7 @@
                             <li><a href="javascript:void();"><i class="fa fa-paint-brush"></i>皮肤设置</a></li>
                             <li class="divider"></li>
                             <li>
-                                <a  id="logout" >
+                                <a id="logout">
                                     <i class="ace-icon fa fa-power-off"></i>
                                     安全退出
                                 </a>
@@ -87,7 +89,7 @@
                     <img src="${ctx}/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>administrator</p>
+                    <p>${sessionScope.userName}</p>
                     <a><i class="fa fa-circle text-success"></i>在线</a>
                 </div>
             </div>
@@ -116,13 +118,13 @@
                        data-id="/Home/Default">欢迎首页</a>
                     <%--<a href="javascript:;" class="menuTab" data-id="/Home/About" style="padding-right: 15px;">平台介绍</a>--%>
                     <%--<a href="javascript:;" class="menuTab" data-id="/SystemManage/Organize/Index">机构管理 <i--%>
-                            <%--class="fa fa-remove"></i></a>--%>
+                    <%--class="fa fa-remove"></i></a>--%>
                     <%--<a href="javascript:;" class="menuTab" data-id="/SystemManage/Role/Index">角色管理 <i--%>
-                            <%--class="fa fa-remove"></i></a>--%>
+                    <%--class="fa fa-remove"></i></a>--%>
                     <%--<a href="javascript:;" class="menuTab" data-id="/SystemManage/Duty/Index">岗位管理 <i--%>
-                            <%--class="fa fa-remove"></i></a>--%>
+                    <%--class="fa fa-remove"></i></a>--%>
                     <%--<a href="javascript:;" class="menuTab" data-id="/SystemManage/User/Index">用户管理 <i--%>
-                            <%--class="fa fa-remove"></i></a>--%>
+                    <%--class="fa fa-remove"></i></a>--%>
                 </div>
             </nav>
             <button class="roll-nav roll-right tabRight">
@@ -172,7 +174,7 @@
                 window.location.href = ctx + "/" + data.url;
             },
             error: function () {
-            alert("网络错误");
+                alert("网络错误");
             }
         });
 

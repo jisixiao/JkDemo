@@ -18,4 +18,8 @@ public interface UserService {
     public List<User> getAllUser();
 
     public List<User> pagedQueryUser(Map<String, Object> map);
+
+    public void deleteUserById(int id);
+
+    public void  updataUserById(  User user);
 }

@@ -21,13 +21,14 @@
 <%--zTree--%>
 <link rel="stylesheet" href="${ctx}/pluggable/zTree/css/zTreeStyle/metro.css">
 <%--<link rel="stylesheet" href="${ctx}/pluggable/zTree/css/zTreeStyle/demo.css">--%>
-<%--<link rel="stylesheet" href="${ctx}/pluggable/zTree/css/zTreeStyle/zTreeStyle.css">--%>
+
+<%--dataTable--%>
+<link rel="stylesheet" href="${ctx}/pluggable/dataTable/css/jquery.dataTables.min.css">
 
 
 
 
 <script src="${ctx}/pluggable/jquery/jQuery-2.2.0.min.js?v=1.0"></script>
-<script src="${ctx}/js/index.js"></script>
 <script src="${ctx}/js/templet.js"></script>
 <%--zTree--%>
 <script src="${ctx}/pluggable/zTree/js/jquery.ztree.all-3.5.min.js"></script>
@@ -37,7 +38,10 @@
 
 <script src="${ctx}/pluggable/bootstrap/js/bootstrap.min.js"></script>
 <%--<script src="${ctx}/pluggable/bootstrap/js/dataTables.bootstrap.js"></script>--%>
-<%--<script src="${ctx}/pluggable/bootstrap/js/jquery.dataTables.js"></script>--%>
+
+<%--dataTable--%>
+<script src="${ctx}/pluggable/dataTable/js/jquery.dataTables.min.js"></script>
+
 <script src="${ctx}/pluggable/bootstrap/validator/bootstrapValidator.min.js"></script>
 
 <script type="text/javascript">
