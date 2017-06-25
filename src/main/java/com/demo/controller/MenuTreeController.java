@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import com.demo.base.GlobalVariable;
 import com.demo.po.Menu;
 import com.demo.utils.ResponseContent;
 import org.springframework.stereotype.Controller;
@@ -59,7 +60,7 @@ public class MenuTreeController extends BaseController<MenuTreeController> {
         }
         menu.setfModuleid(fModuleid);
         menu.setfFullname(fFullname);
-        String createUserName = (String) request.getSession().getAttribute("userName");
+        String createUserName = (String) request.getSession().getAttribute(GlobalVariable.SESSION_USERNAME);
 
         menu.setfCreateusername(createUserName);
 

@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import com.demo.base.GlobalVariable;
 import com.demo.po.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ public class EmailController extends BaseController<EmailController> {
     @RequestMapping("/editor")
     public String SendEmail(HttpServletRequest request) {
 
-        String UserName = (String) request.getSession().getAttribute("userName");
+        String UserName = (String) request.getSession().getAttribute(GlobalVariable.SESSION_USERNAME);
         User user = userService.getUser(UserName);
         String email = user.getEmail();
         request.setAttribute("email",email);

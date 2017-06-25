@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import com.demo.base.GlobalVariable;
 import com.demo.po.User;
 import com.demo.service.UserService;
 import com.demo.utils.PageBean;
@@ -40,7 +41,7 @@ public class UserController extends BaseController<UserController> {
             User user = userService.getUser(username);
             String passWord = user.getPassword();
             if (passWord.equals(password)) {
-                request.getSession().setAttribute("userName", username);
+                request.getSession().setAttribute(GlobalVariable.SESSION_USERNAME, username);
                 return "home.jsp";
             } else {
                 return "index.jsp";
@@ -128,7 +129,7 @@ public class UserController extends BaseController<UserController> {
 
                 responseContent.setUrl("home/goHomeView.action");
 
-                request.getSession().setAttribute("userName", username);
+                request.getSession().setAttribute(GlobalVariable.SESSION_USERNAME, username);
                 request.getSession().setAttribute("user", user);
 
             }
@@ -155,7 +156,7 @@ public class UserController extends BaseController<UserController> {
 
         responseContent.setUrl("home/goHomeView.action");
 
-        request.getSession().setAttribute("userName", null);
+        request.getSession().setAttribute(GlobalVariable.SESSION_USERNAME, null);
 
         return responseContent;
     }

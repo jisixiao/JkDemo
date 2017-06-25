@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import com.demo.base.GlobalVariable;
 import com.demo.po.Menu;
 import com.demo.po.User;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,7 @@ public class HomeController extends BaseController<HomeController> {
     @RequestMapping("/goHomeView.action")
     public String goHomeView(HttpServletRequest request) {
 
-        String userNamme = (String) request.getSession().getAttribute("userName");
+        String userNamme = (String) request.getSession().getAttribute(GlobalVariable.SESSION_USERNAME);
 
         if (userNamme != null && !userNamme.equals("")) {
             return "home.jsp";
@@ -57,6 +58,7 @@ public class HomeController extends BaseController<HomeController> {
     public List<Menu> getMenuList(HttpServletRequest request) {
         List<Menu> menuList = menuService.getMenuList();
 
+        /**
         User user = (User) request.getSession().getAttribute("user");
         String authority = user.getAuthority();
         if (authority.equals("0"))
@@ -76,9 +78,9 @@ public class HomeController extends BaseController<HomeController> {
             return  au_Menu;
 
         }
+**/
 
-
-        return null;
+        return menuList;
     }
 
     /**
