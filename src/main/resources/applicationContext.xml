@@ -17,6 +17,7 @@
 			http://www.springframework.org/schema/tx/spring-tx-3.0.xsd ">
 
 
+
     <!--  加载数据库配置的属性文件 -->
     <context:property-placeholder location="classpath:jdbc.properties"/>
     <!-- 自动扫描 -->
@@ -59,6 +60,14 @@
     </bean>
 
 
+    <!-- 开启事务注解驱动 -->
+    <tx:annotation-driven />
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
 
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <!-- 国际化信息所在的文件名 -->
@@ -66,6 +75,14 @@
         <!-- 如果在国际化资源文件中找不到对应代码的信息，就用这个代码作为名称  -->
         <property name="useCodeAsDefaultMessage" value="true" />
     </bean>
+
+
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <bean id="appLog" class="com.demo.tools.AppLogs"/>
+
+
+
 
 
 
