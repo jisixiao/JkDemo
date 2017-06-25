@@ -18,6 +18,8 @@ public class MenuServiceImpl implements MenuService {
 
     @Autowired
     MenuMapper menuMapper;
+
+
     public List<Menu> getMenuList() {
         MenuExample menuExample = new MenuExample();
         MenuExample.Criteria criteria = menuExample.createCriteria();

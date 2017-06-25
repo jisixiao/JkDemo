@@ -1,6 +1,6 @@
 package com.demo.service.impl;
 
-import com.demo.mapper.userMapper;
+import com.demo.mapper.UserMapper;
 import com.demo.po.User;
 import com.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,28 +19,28 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    userMapper userMapper;
+    UserMapper UserMapper;
 
 
     public User getUser(String usernName) {
-        return userMapper.getUser(usernName);
+        return UserMapper.getUser(usernName);
     }
 
     public List<User> getAllUser() {
-        return userMapper.getAllUser();
+        return UserMapper.getAllUser();
     }
 
     public List<User> pagedQueryUser(Map<String, Object> map) {
-        return userMapper.pagedQueryUser(map);
+        return UserMapper.pagedQueryUser(map);
     }
 
     public void deleteUserById(int id) {
-        userMapper.deleteUserById(id);
+        UserMapper.deleteUserById(id);
     }
 
     public void updataUserById(User user) {
 
-        userMapper.updataUserById(user.getId(),
+        UserMapper.updataUserById(user.getId(),
                 user.getUsername(),
                 user.getPassword(),
                 user.getDepartment(),
