@@ -114,7 +114,7 @@ public class AppLogs extends Base<AppLogs> {
         } catch (Exception ex) {
             //记录本地异常日志
            logInfo("==异常通知异常==");
-            logErro("异常信息:{}", ex.getMessage());
+            //logErro("异常信息:{}", ex.getMessage());
         }
          /*==========记录本地异常日志==========*/
 
@@ -178,7 +178,7 @@ public class AppLogs extends Base<AppLogs> {
         } catch (Exception e) {
             //记录本地异常日志
             logInfo("==前置通知异常==");
-            logErro("异常信息:{}", e.getMessage());
+            //logErro("异常信息:{}", e.getMessage());
             requestError = e.getMessage();
             JsonUtils.objectToJson(logBean);
         }
